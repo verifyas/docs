@@ -84,10 +84,16 @@ curl https://api.verifypayments.com/bank_accounts/ \
   -d "currency=AED"
 ```
 
+### HTTP Request
+
+`POST https://api.verifypayments.com/bank_accounts/`
+
+### Query Parameters
+
 Parameter | Description
 --------- | -----------
-sender<div class=requiredness>Optional</div> | The Sender ID that this bank account is associated with. Required when account is associated with a sender.
-receiver<div class=requiredness>Optional</div> | The Receiver ID that this bank account is associated with. Required when account is associated with a receiver.
+sender<div class=how_required>Optional</div> | The Sender ID that this bank account is associated with. Required when account is associated with a sender.
+receiver<div class=how_required>Optional</div> | The Receiver ID that this bank account is associated with. Required when account is associated with a receiver.
 name | The name of the person or business that owns the bank account
 iban | The unique, internationally-recognized bank account ID for this account
 currency | The 3-letter [ISO4217 currency code](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) for the bank account
@@ -95,19 +101,23 @@ currency | The 3-letter [ISO4217 currency code](https://en.wikipedia.org/wiki/IS
 ## Retrieve a bank account
 
 ```shell
-curl https://api.verifypayments.com/bank_accounts/{ACCOUNT_ID}/ \
+curl https://api.verifypayments.com/bank_accounts/<ID> \
   -H "Authorization: Bearer %test_secret_key%"
 ```
 
+### HTTP Request
+
+`GET https://api.verifypayments.com/bank_accounts/<ID>`
+
+### Query Parameters
+
 Parameter | Description
 --------- | -----------
-account_id<div class=requiredness>Required</div> | The bank account you'd like to retrieve the details for
-
-## Update a bank account
+id<div class=how_required>Required</div> | The bank account you'd like to retrieve the details for
 
 # Transfers
 
-A Transfer object is created when you initiate a transfer from `source` bank account to a `destination` bank account. Transfers generally require [Verifications](#verifications) to complete.
+A Transfer object is created when you initiate a transfer from a `source` bank account to a `destination` bank account. Most transfers require [Verifications](#verifications) to complete.
 
 ## Get All Transfers
 
@@ -116,62 +126,27 @@ curl "https://api.verifypayments.com/transfers"
   -H "Authorization: %test_secret_key%"
 ```
 
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
+This endpoint retrieves all transfers, sorted in reverse-chronological order (i.e. from newest to oldest).
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET https://api.verifypayments.com/transfers/`
 
 ## Get a Specific Transfer
 
 ```shell
-curl "http://example.com/api/kittens/2"
+curl "https://api.verifypayments.com/transfers/<ID>/" \
   -H "Authorization: %test_secret_key%"
 ```
 
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://api.verifypayments.com/transfers/<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+id<div class=how_required>Required</div> | The ID of the transfer we'd like to retrieve
 
 # Verifications
