@@ -76,7 +76,7 @@ currency | The 3-letter [ISO4217 currency code](https://en.wikipedia.org/wiki/IS
 When you create a bank account, you must specify the bank account holder (`Sender` or `Receiver`). The bank account will then be associated exclusively with that account holder.
 
 ```shell
-curl https://api.verifypayments.com/bank_accounts/ \
+curl https://api.verifypayments.com/bank_accounts \
   -H "Authorization: Bearer %test_secret_key%" \
   -d "sender={SENDER_ID}" \
   -d "name=Abdullah Mohamed Alahmed" \
@@ -86,7 +86,7 @@ curl https://api.verifypayments.com/bank_accounts/ \
 
 ### HTTP Request
 
-`POST https://api.verifypayments.com/bank_accounts/`
+`POST https://api.verifypayments.com/bank_accounts`
 
 ### Query Parameters
 
@@ -130,12 +130,12 @@ This endpoint retrieves all transfers, sorted in reverse-chronological order (i.
 
 ### HTTP Request
 
-`GET https://api.verifypayments.com/transfers/`
+`GET https://api.verifypayments.com/transfers`
 
 ## Get a Specific Transfer
 
 ```shell
-curl "https://api.verifypayments.com/transfers/<ID>/" \
+curl "https://api.verifypayments.com/transfers/<ID>" \
   -H "Authorization: %test_secret_key%"
 ```
 
