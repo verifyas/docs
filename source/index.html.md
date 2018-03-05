@@ -8,10 +8,10 @@ search: true
 
 # Introduction
 
-Welcome to the Verify Payments API 👋! The reference documentation below describes the various functions that you can use to initiate, track and manage fiat payments using the Verify Payments API.
+Welcome to the Verify Payments API 👋! The reference documentation below describes the various functions that you can use to initiate, track and manage fiat transfer using the Verify Payments API.
 
 <aside class="notice">
-This API is currently in alpha. We may make breaking changes to the API endpoints on short notice. Make sure to <a href="#">subscribe to our mailing list</a> to get notified of such changes ahead of time.
+This API is currently in alpha. We may push breaking changes to the API endpoints on short notice. Make sure to <a href="#">subscribe to our mailing list</a> to get notified of such changes ahead of time.
 </aside>
 
 # Authentication
@@ -56,8 +56,6 @@ A Bank Account object is created when a user logs in with their online banking c
   "last_accessed": "2018-03-01T13:12:22-08:00"
 }
 ```
-
-<!-- TODO: Update this to include the Bank details in the Bank Account object -->
 
 ### Parameters
 
@@ -149,8 +147,8 @@ destination_id | The destination [Bank Account](#the-bank-account-object) to whi
 ## Get All Transfers
 
 ```shell
-curl "https://api.verifypayments.com/transfers"
-  -H "Authorization: %test_secret_key%"
+curl "https://api.verifypayments.com/transfers" \
+  -H "Authorization: Bearer %test_secret_key%"
 ```
 
 This endpoint retrieves all transfers, sorted in reverse-chronological order (i.e. from newest to oldest).
@@ -163,7 +161,7 @@ This endpoint retrieves all transfers, sorted in reverse-chronological order (i.
 
 ```shell
 curl "https://api.verifypayments.com/transfers/<ID>" \
-  -H "Authorization: %test_secret_key%"
+  -H "Authorization: Bearer %test_secret_key%"
 ```
 
 ### HTTP Request
@@ -220,7 +218,7 @@ transfer_id | The [Transfer](#the-transfer-object) to which this verification be
 ```shell
 curl "https://api.verifypayments.com/verifications/<ID>" \
   -X PUT \
-  -H "Authorization: %test_secret_key%" \
+  -H "Authorization: Bearer %test_secret_key%" \
   -d "challenge_response=123456"
 ```
 
@@ -235,3 +233,4 @@ Submit the `challenge_response` for a verification. This request is idempotent, 
 Parameter | Description
 --------- | -----------
 id<div class=how_required>Required</div> | The ID of the verification that we're submitting the `challenge_response` for
+challenge_response<div class=how_required>Required</div> | The response provided by the customer to the verification challenge
