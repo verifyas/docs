@@ -119,6 +119,33 @@ id<div class=how_required>Required</div> | The bank account you'd like to retrie
 
 A Transfer object is created when you initiate a transfer from a `source` bank account to a `destination` bank account. Most transfers require [Verifications](#verifications) to complete.
 
+## The transfer object
+
+```json
+{
+  "id": "tr_a52e8452378ed0f77540a5084fc3b702",
+  "object": "transfer",
+  "currency": "AED",
+  "amount": "10000",
+  "status": "complete",
+  "source_id": "ba_8676aa794678cc51c9f1538893518e6d",
+  "destination_id": "ba_b7739d06fbf4d4aa2460c69686eb1d56",
+  "created_at": "2018-03-01T13:12:22-08:00"
+}
+```
+
+### Parameters
+
+Parameter | Description
+--------- | -----------
+id | The unique ID of this specific bank transfer
+object | The type of the object (always `transfer` for Transfers)
+currency | The 3-letter [ISO4217 currency code](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) for the transfer
+amount | The transfer amount, in fils (e.g. 1000 = AED10.00)
+status | The status of the transfer. Can be either `pending`, `failed` or `success`
+source_id | The source [Bank Account](#the-bank-account-object) from which funds will be withdrawn. This must belong to a `sender`
+destination_id | The destination [Bank Account](#the-bank-account-object) to which funds will be deposited. This must belong to a `receiver`
+
 ## Get All Transfers
 
 ```shell
@@ -150,3 +177,11 @@ Parameter | Description
 id<div class=how_required>Required</div> | The ID of the transfer we'd like to retrieve
 
 # Verifications
+
+A Verification object is created whenever additional verification is required (e.g. SMS code) before a transfer can be completed.
+
+There are various types of verifications:
+
+- SMS Verification (`sms`)
+- Two Factor Authentication, or 2FA (`two_factor_auth`)
+- Secret Question (`secret_question`)
