@@ -5,7 +5,7 @@
  */
 
 $(function(){
-  fetch('http://api.verifypayments.com/test_data')
+  fetch('https://api.verifypayments.com/test_data')
     .then(function(response) {
       return response.json();
     })
