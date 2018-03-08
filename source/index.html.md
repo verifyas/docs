@@ -144,7 +144,31 @@ status | The status of the transfer. Can be either `pending`, `failed` or `succe
 source_id | The source [Bank Account](#the-bank-account-object) from which funds will be withdrawn. This must belong to a `sender`
 destination_id | The destination [Bank Account](#the-bank-account-object) to which funds will be deposited. This must belong to a `receiver`
 
-## Get All Transfers
+## Create a transfer
+
+```shell
+curl "https://api.verifypayments.com/transfers/" \
+  -H "Authorization: Bearer %test_secret_key%" \
+  -d "currency=AED" \
+  -d "amount=10000" \
+  -d "source_id=ba_8676aa794678cc51c9f1538893518e6d" \
+  -d "destination_id=ba_b7739d06fbf4d4aa2460c69686eb1d56"
+```
+
+### HTTP Request
+
+`POST https://api.verifypayments.com/transfers/`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+currency | The 3-letter [ISO4217 currency code](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) for the transfer
+amount | The transfer amount, in fils (e.g. 1000 = AED10.00)
+source_id | The source [Bank Account](#the-bank-account-object) from which funds will be withdrawn. This must belong to the presently authenticated `sender` (i.e. whose API key is used to submit the request)
+destination_id | The destination [Bank Account](#the-bank-account-object) to which funds will be deposited. This must belong to a `receiver`
+
+## Get all transfers
 
 ```shell
 curl "https://api.verifypayments.com/transfers" \
@@ -157,7 +181,7 @@ This endpoint retrieves all transfers, sorted in reverse-chronological order (i.
 
 `GET https://api.verifypayments.com/transfers`
 
-## Get a Specific Transfer
+## Retrieve a specific transfer
 
 ```shell
 curl "https://api.verifypayments.com/transfers/<ID>" \
