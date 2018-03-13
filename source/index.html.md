@@ -11,7 +11,7 @@ search: true
 Welcome to the Verify Payments API 👋! The reference documentation below describes the various functions that you can use to initiate, track and manage fiat transfer using the Verify Payments API.
 
 <aside class="notice">
-This API is currently in alpha. We may push breaking changes to the API endpoints on short notice. Make sure to <a href="#">subscribe to our mailing list</a> to get notified of such changes ahead of time.
+This API is currently in alpha. We may push breaking changes to the API endpoints on short notice. Make sure to <a href="https://groups.google.com/a/lists.verify.as/forum/#!forum/api-announcements" target="_blank" data-link="_">join our mailing list</a> to get notified of such changes ahead of time.
 </aside>
 
 # Authentication
