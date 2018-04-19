@@ -125,7 +125,7 @@ A Transfer object is created when you initiate a transfer from a `source` bank a
   "object": "transfer",
   "currency": "AED",
   "amount": "10000",
-  "status": "complete",
+  "status": "success",
   "source_id": "ba_8676aa794678cc51c9f1538893518e6d",
   "destination_id": "ba_b7739d06fbf4d4aa2460c69686eb1d56",
   "created_at": "2018-03-01T13:12:22-08:00"
