@@ -1,0 +1,592 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" href="../images/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../images/favicon-16x16.png" sizes="16x16" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,700" rel="stylesheet">
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <a href="/"><img src="images/logo.svg" class="logo" alt="Logo" /></a>
+      <hr class="separator">
+      <div id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+          </li>
+          <li>
+            <a href="#bank-accounts" class="toc-h1 toc-link" data-title="Bank accounts">Bank Accounts</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#the-bank-account-object" class="toc-h2 toc-link" data-title="The bank account object">The bank account object</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-bank-account" class="toc-h2 toc-link" data-title="Create a bank account">Create a bank account</a>
+                  </li>
+                  <li>
+                    <a href="#retrieve-a-bank-account" class="toc-h2 toc-link" data-title="Retrieve a bank account">Retrieve a bank account</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#transfers" class="toc-h1 toc-link" data-title="Transfers">Transfers</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#the-transfer-object" class="toc-h2 toc-link" data-title="The transfer object">The transfer object</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-transfer" class="toc-h2 toc-link" data-title="Create a transfer">Create a transfer</a>
+                  </li>
+                  <li>
+                    <a href="#get-all-transfers" class="toc-h2 toc-link" data-title="Get all transfers">Get all transfers</a>
+                  </li>
+                  <li>
+                    <a href="#retrieve-a-specific-transfer" class="toc-h2 toc-link" data-title="Retrieve a specific transfer">Retrieve a specific transfer</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#verifications" class="toc-h1 toc-link" data-title="Verifications">Verifications</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#the-verification-object" class="toc-h2 toc-link" data-title="The verification object">The verification object</a>
+                  </li>
+                  <li>
+                    <a href="#submit-a-verification" class="toc-h2 toc-link" data-title="Submit a verification">Submit a verification</a>
+                  </li>
+              </ul>
+          </li>
+      </div>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>Welcome to the Verify Payments API 👋! The reference documentation below describes the various functions that you can use to initiate, track and manage fiat transfer using the Verify Payments API.</p>
+
+<aside class="notice">
+This API is currently in alpha. We may push breaking changes to the API endpoints on short notice. Make sure to <a href="https://groups.google.com/a/lists.verify.as/forum/#!forum/api-announcements" target="_blank" data-link="_">join our mailing list</a> to get notified of such changes ahead of time.
+</aside>
+<h1 id='authentication'>Authentication</h1>
+<blockquote>
+<p>To authorize, use this code:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"https://api.verifypayments.com/"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer %test_secret_key%"</span>
+</code></pre>
+<blockquote>
+<p>The code above actually works. You can paste it directly in your terminal to try it out!</p>
+</blockquote>
+
+<p>You can authenticate requests to the Verify Payments API by including your secret key in the request that you send. We currently use <a href="https://tools.ietf.org/html/rfc6750">Bearer authentication</a> without the underlying OAuth 2.0 protocol.</p>
+
+<aside class=notice>
+<strong>Heads up</strong> &mdash; We plan to add SSL/TLS certificate-based authentication in the near future.
+</aside>
+
+<p>The token access keys used to authenticate with the API are generated through the Dashboard &mdash; keep these private! Make sure not to commit them to your source code repositories or share them.</p>
+
+<p>Include the API key for all requests to the server in a header that looks like the following: <code>Authorization: Bearer &quot;%test_secret_key%&quot;</code></p>
+
+<p>All API calls must be made using <a href="http://en.wikipedia.org/wiki/HTTP_Secure">HTTPS</a>. Calls made over unsecured HTTP connections will fail.</p>
+<h1 id='bank-accounts'>Bank Accounts</h1>
+<p>A Bank Account object is created when a user logs in with their online banking credentials. Verify retrieves the various account details and creates Bank Account objects for each supported account. These objects can then be used to initiate <a href="#transfers">Transfers</a>.</p>
+<h2 id='the-bank-account-object'>The bank account object</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ba_81047f09b378e5fe896372868579fb06"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bank_account"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Abdullah Mohamed Alahmed"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"is_individual"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"account_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"67890123456"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AE070331234567890123456"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_accessed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-01T13:12:22-08:00"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='parameters'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>The unique ID of this specific bank account</td>
+</tr>
+<tr>
+<td>object</td>
+<td>The type of the object (always <code>bank_account</code> for Bank Accounts)</td>
+</tr>
+<tr>
+<td>name</td>
+<td>The name of the person or business that owns the bank account</td>
+</tr>
+<tr>
+<td>is_individual</td>
+<td>Indicates if the owner of the bank account is an individual or a corporate entity</td>
+</tr>
+<tr>
+<td>account_number</td>
+<td>The bank-specific account number for this bank account</td>
+</tr>
+<tr>
+<td>iban</td>
+<td>The unique, internationally-recognized bank account ID for this account</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>The 3-letter <a href="https://en.wikipedia.org/wiki/ISO_4217#Active_codes">ISO4217 currency code</a> for the bank account</td>
+</tr>
+</tbody></table>
+<h2 id='create-a-bank-account'>Create a bank account</h2>
+<p>When you create a bank account, you must specify the bank account holder (<code>Sender</code> or <code>Receiver</code>). The bank account will then be associated exclusively with that account holder.</p>
+<pre class="highlight shell tab-shell"><code>curl https://api.verifypayments.com/bank_accounts <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer %test_secret_key%"</span> <span class="se">\</span>
+  -d <span class="s2">"sender={SENDER_ID}"</span> <span class="se">\</span>
+  -d <span class="s2">"name=Abdullah Mohamed Alahmed"</span> <span class="se">\</span>
+  -d <span class="s2">"iban=AE070331234567890123456"</span> <span class="se">\</span>
+  -d <span class="s2">"currency=AED"</span>
+</code></pre><h3 id='http-request'>HTTP Request</h3>
+<p><code>POST https://api.verifypayments.com/bank_accounts</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sender<div class=how_required>Optional</div></td>
+<td>The Sender ID that this bank account is associated with. Required when account is associated with a sender.</td>
+</tr>
+<tr>
+<td>receiver<div class=how_required>Optional</div></td>
+<td>The Receiver ID that this bank account is associated with. Required when account is associated with a receiver.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>The name of the person or business that owns the bank account</td>
+</tr>
+<tr>
+<td>iban</td>
+<td>The unique, internationally-recognized bank account ID for this account</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>The 3-letter <a href="https://en.wikipedia.org/wiki/ISO_4217#Active_codes">ISO4217 currency code</a> for the bank account</td>
+</tr>
+</tbody></table>
+<h2 id='retrieve-a-bank-account'>Retrieve a bank account</h2><pre class="highlight shell tab-shell"><code>curl https://api.verifypayments.com/bank_accounts/&lt;ID&gt; <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer %test_secret_key%"</span>
+</code></pre><h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET https://api.verifypayments.com/bank_accounts/&lt;ID&gt;</code></p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id<div class=how_required>Required</div></td>
+<td>The bank account you&#39;d like to retrieve the details for</td>
+</tr>
+</tbody></table>
+<h1 id='transfers'>Transfers</h1>
+<p>A Transfer object is created when you initiate a transfer from a <code>source</code> bank account to a <code>destination</code> bank account. Most transfers require <a href="#verifications">Verifications</a> to complete.</p>
+<h2 id='the-transfer-object'>The transfer object</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tr_a52e8452378ed0f77540a5084fc3b702"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transfer"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"source_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ba_8676aa794678cc51c9f1538893518e6d"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"destination_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ba_b7739d06fbf4d4aa2460c69686eb1d56"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-01T13:12:22-08:00"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='parameters-2'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>The unique ID of this specific bank transfer</td>
+</tr>
+<tr>
+<td>object</td>
+<td>The type of the object (always <code>transfer</code> for Transfers)</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>The 3-letter <a href="https://en.wikipedia.org/wiki/ISO_4217#Active_codes">ISO4217 currency code</a> for the transfer</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>The transfer amount, in fils (e.g. 1000 = AED10.00)</td>
+</tr>
+<tr>
+<td>status</td>
+<td>The status of the transfer. Can be either <code>pending</code>, <code>failed</code> or <code>success</code></td>
+</tr>
+<tr>
+<td>source_id</td>
+<td>The source <a href="#the-bank-account-object">Bank Account</a> from which funds will be withdrawn. This must belong to a <code>sender</code></td>
+</tr>
+<tr>
+<td>destination_id</td>
+<td>The destination <a href="#the-bank-account-object">Bank Account</a> to which funds will be deposited. This must belong to a <code>receiver</code></td>
+</tr>
+</tbody></table>
+<h2 id='create-a-transfer'>Create a transfer</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.verifypayments.com/transfers/"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer %test_secret_key%"</span> <span class="se">\</span>
+  -d <span class="s2">"currency=AED"</span> <span class="se">\</span>
+  -d <span class="s2">"amount=10000"</span> <span class="se">\</span>
+  -d <span class="s2">"source_id=ba_8676aa794678cc51c9f1538893518e6d"</span> <span class="se">\</span>
+  -d <span class="s2">"destination_id=ba_b7739d06fbf4d4aa2460c69686eb1d56"</span>
+</code></pre><h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST https://api.verifypayments.com/transfers/</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currency</td>
+<td>The 3-letter <a href="https://en.wikipedia.org/wiki/ISO_4217#Active_codes">ISO4217 currency code</a> for the transfer</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>The transfer amount, in fils (e.g. 1000 = AED10.00)</td>
+</tr>
+<tr>
+<td>source_id</td>
+<td>The source <a href="#the-bank-account-object">Bank Account</a> from which funds will be withdrawn. This must belong to the presently authenticated <code>sender</code> (i.e. whose API key is used to submit the request)</td>
+</tr>
+<tr>
+<td>destination_id</td>
+<td>The destination <a href="#the-bank-account-object">Bank Account</a> to which funds will be deposited. This must belong to a <code>receiver</code></td>
+</tr>
+</tbody></table>
+<h2 id='get-all-transfers'>Get all transfers</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.verifypayments.com/transfers"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer %test_secret_key%"</span>
+</code></pre>
+<p>This endpoint retrieves all transfers, sorted in reverse-chronological order (i.e. from newest to oldest).</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET https://api.verifypayments.com/transfers</code></p>
+<h2 id='retrieve-a-specific-transfer'>Retrieve a specific transfer</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.verifypayments.com/transfers/&lt;ID&gt;"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer %test_secret_key%"</span>
+</code></pre><h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET https://api.verifypayments.com/transfers/&lt;ID&gt;</code></p>
+<h3 id='url-parameters-2'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id<div class=how_required>Required</div></td>
+<td>The ID of the transfer we&#39;d like to retrieve</td>
+</tr>
+</tbody></table>
+<h1 id='verifications'>Verifications</h1>
+<p>A Verification object is created whenever additional verification is required in order for a transfer to be completed.</p>
+
+<p>There are various methods for verification:</p>
+
+<ul>
+<li>SMS Verification (<code>sms</code>)</li>
+<li>Two Factor Authentication, or 2FA (<code>two_factor_auth</code>)</li>
+<li>Secret Question (<code>secret_question</code>)</li>
+</ul>
+
+<p>The specific verification method required will depend on the bank account that a transfer is initiated from.</p>
+<h2 id='the-verification-object'>The verification object</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vrf_dd2e878a149ab1d6b3df3a3cb1f060a4"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"verification"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sms"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"challenge_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Enter the SMS code sent to your mobile number ending in 789"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"challenge_response"</span><span class="p">:</span><span class="w"> </span><span class="s2">"124990"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"passed"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"transfer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tr_a52e8452378ed0f77540a5084fc3b702"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"expires_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-01T13:12:22-08:00"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='parameters-3'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>The unique ID of this verification</td>
+</tr>
+<tr>
+<td>object</td>
+<td>The type of the object (always <code>verification</code> for Verifications)</td>
+</tr>
+<tr>
+<td>method</td>
+<td>The method of verification required (either <code>sms</code>, <code>two_factor_auth</code> or <code>secret_question</code>)</td>
+</tr>
+<tr>
+<td>challenge_text</td>
+<td>A human-friendly text that can be displayed to users in your custom UI</td>
+</tr>
+<tr>
+<td>challenge_response</td>
+<td>The response that was submitted for this verification attempt</td>
+</tr>
+<tr>
+<td>status</td>
+<td>The status of the verification. Can be either <code>pending</code>, <code>failed</code> or <code>success</code></td>
+</tr>
+<tr>
+<td>transfer_id</td>
+<td>The <a href="#the-transfer-object">Transfer</a> to which this verification belongs</td>
+</tr>
+</tbody></table>
+<h2 id='submit-a-verification'>Submit a verification</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.verifypayments.com/verifications/&lt;ID&gt;"</span> <span class="se">\</span>
+  -X PUT <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer %test_secret_key%"</span> <span class="se">\</span>
+  -d <span class="s2">"challenge_response=123456"</span>
+</code></pre>
+<p>Submit the <code>challenge_response</code> for a verification. This request is idempotent, and you can safely submit the request multiple times.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>PUT https://api.verifypayments.com/verifications/&lt;ID&gt;</code></p>
+<h3 id='url-parameters-3'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id<div class=how_required>Required</div></td>
+<td>The ID of the verification that we&#39;re submitting the <code>challenge_response</code> for</td>
+</tr>
+<tr>
+<td>challenge_response<div class=how_required>Required</div></td>
+<td>The response provided by the customer to the verification challenge</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+      </div>
+    </div>
+  </body>
+</html>
