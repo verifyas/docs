@@ -189,7 +189,7 @@ Submit the `challenge_response` for a verification. This request is idempotent, 
 
 ### HTTP Request
 
-`PUT https://api.verifypayments.com/verifications/<ID>`
+`PUT https://api.stgverifypayments.com/verifications/<ID>`
 
 ### URL Parameters
 

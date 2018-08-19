@@ -5,12 +5,12 @@
  */
 
 $(function(){
-  fetch('https://api.verifypayments.com/test_data')
+  fetch('https://api.stgverifypayments.com/test_data')
     .then(function(response) {
       return response.json();
     })
     .then(function(obj) {
-      findAndReplaceApiKeys(obj.api_keys);
+      findAndReplaceApiKeys(obj.api_keys[0]);
     });
 });
 
@@ -18,12 +18,12 @@ function findAndReplaceApiKeys(keys) {
   window.findAndReplaceDOMText(
     document.getElementsByTagName('body')[0], {
     find: /%test_secret_key%/g,
-    replace: keys.secret_key
+    replace: keys.secret
   });
 
   window.findAndReplaceDOMText(
     document.getElementsByTagName('body')[0], {
     find: /%test_public_key%/g,
-    replace: keys.public_key
+    replace: keys.public
   });
 }
