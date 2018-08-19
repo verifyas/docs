@@ -188,7 +188,114 @@ Parameter | Description
 bank_id | The ID of the [Bank](#the-bank-object) that the user will attempt to login to
 credentials | A hash containing the online banking credentials supplied by the user, for authentication. This should include a `login` and `password` field containing the respective values
 
-<aside class=notice>A session may require verification in order to successfully authenticate. See <a href="#verification">Verification</a> for details.</aside>
+<aside class=notice>A session may require verification in order to successfully authenticate. See <a href="#verifications">Verification</a> for details.</aside>
+
+# Bank Accounts
+
+Once a session has been established, you can retrieve a list of Bank Accounts that the account owner can choose from when performing the transfer.
+
+## The Bank Account object
+
+```json
+{
+  "id": "ba_kEUWd9qXlyCx",
+  "object": "bank_account",
+  "bank_id": "test_bank",
+  "iban": "AE070331234567890123456",
+  "number": "1234567890123456",
+  "type": "current",
+  "currency": "AED",
+  "balance": 1000,
+  "session_id": "ses_2Ocvnws4y3Yr"
+}
+```
+
+### Parameters
+
+Parameter | Description
+--------- | -----------
+id | The unique ID of this specific bank account. Note that this ID is unique to the current session
+object | The type of the object (always `bank_account` for Bank Accounts)
+bank_id | The [Bank](#the-bank-object) that this account belongs to
+iban | The [IBAN](https://en.wikipedia.org/wiki/International_Bank_Account_Number) is an alphanumeric string of up to 34 characters that uniquely identifies account numbers globally
+number | The account number. Exact length varies by bank and type of account
+type | The type of this account (either `current` or `savings`)
+currency | The 3-letter [ISO4217 currency code](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) for this bank account
+balance | The account balance, in fils
+session_id | Identifies the session that this bank account belongs to
+
+## List all bank accounts
+
+> Example Request:
+
+```shell
+curl "https://api.stgverifypayments.com/sessions/<id>/bank_accounts" \
+  -X GET
+  -H "Authorization: Token %test_public_key%"
+```
+
+### HTTP Request
+
+`GET https://api.stgverifypayments.com/sessions/<id>/bank_accounts`
+
+> Example Response:
+
+```json
+[
+  {
+    "balance": 1000,
+    "bank_id": "test_bank",
+    "currency": "AED",
+    "iban": "AE070331234567890123456",
+    "id": "ba_kEUWd9qXlyCx",
+    "number": "1234567890123456",
+    "object": "bank_account",
+    "session_id": "ses_2Ocvnws4y3Yr",
+    "type": "current"
+  },
+  {
+    "balance": 1000,
+    "bank_id": "test_bank",
+    "currency": "USD",
+    "iban": "AE070331234567890123457",
+    "id": "ba_4yiusVJdVxqC",
+    "number": "1234567890123457",
+    "object": "bank_account",
+    "session_id": "ses_2Ocvnws4y3Yr",
+    "type": "savings"
+  },
+  {
+    "balance": 1000,
+    "bank_id": "test_bank",
+    "currency": "BHD",
+    "iban": "AE070331234567890123458",
+    "id": "ba_l5uF4BMbTh4L",
+    "number": "1234567890123458",
+    "object": "bank_account",
+    "session_id": "ses_2Ocvnws4y3Yr",
+    "type": "savings"
+  }
+]
+```
+
+### URL Parameters
+
+This endpoint does not require any parameters
+
+# Transfers
+
+
+## The Transfer object
+
+```json
+
+```
+
+### Parameters
+
+Parameter | Description
+--------- | -----------
+
 
 # Verifications
 
@@ -244,7 +351,7 @@ Submit the `challenge_response` or `answers[]` for a verification. This request 
 
 ### HTTP Request
 
-`PUT /sessions/<id>/verifications/<id>`
+`PUT /sessions/<id>/verifications/<id>` or `PUT /transfers/<id>/verifications/<id>`
 
 > Example Response:
 
