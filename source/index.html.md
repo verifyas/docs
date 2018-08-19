@@ -158,7 +158,7 @@ Once a session is created, we then have to authenticate the session by calling t
 > Example Request:
 
 ```shell
-curl "https://api.stgverifypayments.com/sessions/:id/login" \
+curl "https://api.stgverifypayments.com/sessions/<id>/login" \
   -H "Authorization: Token %test_public_key%" \
   -d "bank_id=test_bank" \
   -d "credentials[login]=test" \
@@ -231,22 +231,61 @@ attempt_count | The number of times this verification has been attempted
 
 ## Submit a verification
 
+> Example Request:
+
 ```shell
-curl "https://api.stgverifypayments.com/verifications/<ID>" \
+curl "https://api.stgverifypayments.com/sessions/<id>/verifications/<id>" \
   -X PUT \
-  -H "Authorization: Token %test_secret_key%" \
-  -d "challenge_response=123456"
+  -H "Authorization: Token %test_public_key%" \
+  -d "challenge_response=12345"
 ```
 
-Submit the `challenge_response` for a verification. This request is idempotent, and you can safely submit the request multiple times.
+Submit the `challenge_response` or `answers[]` for a verification. This request is idempotent, and you can safely submit the request multiple times.
 
 ### HTTP Request
 
-`PUT https://api.stgverifypayments.com/verifications/<ID>`
+`PUT /sessions/<id>/verifications/<id>`
 
-### URL Parameters
+> Example Response:
+
+```json
+{
+  "id": "vrf_zGf5ZH3LzXDz",
+  "object": "verification",
+  "type": "sms",
+  "attempt_count": 1,
+  "challenge_text": "Please, enter test OTP (1234 to finish or 12345 for one more verification)",
+  "status": "succeeded",
+  "verifiable_id": "ses_2Ocvnws4y3Yr",
+  "verifiable_type": "session",
+  "verifiable": {
+    "id": "ses_2Ocvnws4y3Yr",
+    "object": "session",
+    "status": "pending_verification",
+    "verification": {
+      "id": "vrf_ZhNRoP5eLx60",
+      "object": "verification",
+      "status": "initial",
+      "type": "questions",
+      "questions": [
+          "What is your favorite language (ruby)",
+          "What is your favorite editor (vim)"
+      ],
+      "attempt_count": 0,
+      "verifiable_id": "ses_2Ocvnws4y3Yr",
+      "verifiable_type": "session"
+    },
+    "created_at": "2018-08-19T12:21:34.784Z",
+    "updated_at": "2018-08-19T13:49:51.688Z"
+  }
+}
+```
+
+### Parameters
 
 Parameter | Description
 --------- | -----------
-id<div class=how_required>Required</div> | The ID of the verification that we're submitting the `challenge_response` for
-challenge_response<div class=how_required>Required</div> | The response provided by the customer to the verification challenge
+challenge_response<div class=how_required>Optional</div> | The response provided by the customer to the `sms` verification challenge (e.g. `"12345"`)
+answers[]<div class=how_required>Optional</div> | The response provided by the customer to the `questions` verification challenge. This is an array (e.g. `["first", "second"]`)
+
+<aside class=notice><strong>Notice</strong> &mdash; A verification may return another verification. Check the <code>status</code> of the included <code>verifiable</code> object to determine if this is the case</aside>
