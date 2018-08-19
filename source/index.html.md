@@ -115,19 +115,33 @@ status | The status of the session. Can be either `initial`,  `pending_verificat
 
 ## Create a session
 
-> A session can only be created using your **secret key**
+> Example Request:
+
+<aside class=notice><strong>Note</strong> &mdash; A session can only be created using your <strong>secret key</strong></aside>
 
 ```shell
 curl "https://api.stgverifypayments.com/sessions/" \
   -H "Authorization: Token %test_secret_key%" \
   -d "currency=AED" \
   -d "amount=10000" \
-  -d "description=My First Session" \
+  -d "description=My First Session"
 ```
 
 ### HTTP Request
 
 `POST https://api.stgverifypayments.com/sessions/`
+
+> Example Response:
+
+```json
+{
+  "id": "ses_rDCKbNpZhfzF",
+  "object": "session",
+  "status": "initial",
+  "created_at": "2018-08-19T10:50:28.297Z",
+  "updated_at": "2018-08-19T10:50:28.297Z"
+}
+```
 
 ### URL Parameters
 
@@ -137,30 +151,68 @@ currency | The 3-letter [ISO4217 currency code](https://en.wikipedia.org/wiki/IS
 amount | The transfer amount, in fils (e.g. 1000 = AED10.00)
 description | A desciption that can be included on the checkout screen shown to the user
 
+## Login to a session
+
+Once a session is created, we then have to authenticate the session by calling the `login` endpoint, making sure to include the `id` of the session that we're referring to in the request URL.
+
+> Example Request:
+
+```shell
+curl "https://api.stgverifypayments.com/sessions/:id/login" \
+  -H "Authorization: Token %test_public_key%" \
+  -d "bank_id=test_bank" \
+  -d "credentials[login]=test" \
+  -d "credentials[password]=test_pass"
+```
+
+### HTTP Request
+
+`POST https://api.stgverifypayments.com/sessions/<id>/login`
+
+> Example Response:
+
+```json
+{
+  "id": "ses_2Ocvnws4y3Yr",
+  "object": "session",
+  "status": "connected",
+  "created_at": "2018-08-19T12:21:34.784Z",
+  "updated_at": "2018-08-19T12:21:51.757Z",
+}
+```
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+bank_id | The ID of the [Bank](#the-bank-object) that the user will attempt to login to
+credentials | A hash containing the online banking credentials supplied by the user, for authentication. This should include a `login` and `password` field containing the respective values
+
+<aside class=notice>A session may require verification in order to successfully authenticate. See <a href="#verification">Verification</a> for details.</aside>
+
 # Verifications
 
-A Verification object is created whenever additional verification is required in order for a transfer to be completed.
+Creating a [Session](#sessions) or [Transfer](#transfers) can sometimes require additional verification by our banking providers. There are currently 2 supported methods for verification:
 
-There are various methods for verification:
+Verification Type | Description
+--------- | -----------
+`sms` | An SMS code is sent to the registered mobile device and the account owner is requested to provide the numeric code
+`questions` | The banking provider returns question(s) and the account owner is requested to supply the answers to these questions
 
-- SMS Verification (`sms`)
-- Two Factor Authentication, or 2FA (`two_factor_auth`)
-- Secret Question (`secret_question`)
-
-The specific verification method required will depend on the bank account that a transfer is initiated from.
+The specific verification method required will depend on several things including the bank that a transfer is initiated from and whether a transfer has previously been completed from this customers' account.
 
 ## The verification object
 
 ```json
 {
-  "id": "vrf_dd2e878a149ab1d6b3df3a3cb1f060a4",
+  "id": "vrf_zGf5ZH3LzXDz",
   "object": "verification",
-  "method": "sms",
-  "challenge_text": "Enter the SMS code sent to your mobile number ending in 789",
-  "challenge_response": "124990",
-  "status": "passed",
-  "transfer_id": "tr_a52e8452378ed0f77540a5084fc3b702",
-  "expires_on": "2018-03-01T13:12:22-08:00"
+  "type": "sms",
+  "status": "initial",
+  "verifiable_id": "ses_2Ocvnws4y3Yr",
+  "verifiable_type": "session",
+  "attempt_count": 0,
+  "challenge_text": "Please, enter test OTP (1234 to finish or 12345 for one more verification)"
 }
 ```
 
@@ -170,11 +222,12 @@ Parameter | Description
 --------- | -----------
 id | The unique ID of this verification
 object | The type of the object (always `verification` for Verifications)
-method | The method of verification required (either `sms`, `two_factor_auth` or `secret_question`)
-challenge_text | A human-friendly text that can be displayed to users in your custom UI
-challenge_response | The response that was submitted for this verification attempt
-status | The status of the verification. Can be either `pending`, `failed` or `success`
-transfer_id | The [Transfer](#the-transfer-object) to which this verification belongs
+type | The method of verification required (either `sms` or `questions`)
+status | The status of the verification. Can be either `initial`, `retry`, `succeeded` or `failed`
+challenge_text | A human-friendly text that can be displayed to the account owner in your custom UI
+verifiable_type | The Type of the object that this verification is for. Can either be `transfer` or `session`
+verifiable_id | The ID of the [Transfer](#the-transfer-object) or [Session](#the-session-object) to which this verification belongs
+attempt_count | The number of times this verification has been attempted
 
 ## Submit a verification
 
