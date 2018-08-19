@@ -56,74 +56,52 @@ Before the user can sign in to their bank, they must select one from a list of s
 
 Parameter | Description
 --------- | -----------
-id | The unique ID of this specific bank account
-object | The type of the object (always `bank_account` for Bank Accounts)
-name | The name of the person or business that owns the bank account
-is_individual | Indicates if the owner of the bank account is an individual or a corporate entity
-account_number | The bank-specific account number for this bank account
-iban | The unique, internationally-recognized bank account ID for this account
-currency | The 3-letter [ISO4217 currency code](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) for the bank account
+id | The unique ID of this specific bank
+object | The type of the object (always `bank` for Banks)
+name | The name of the bank in user-readable form
 
-## Create a bank account
+## List all banks
 
-When you create a bank account, you must specify the bank account holder (`Sender` or `Receiver`). The bank account will then be associated exclusively with that account holder.
+> Example Request:
 
 ```shell
-curl https://api.verifypayments.com/bank_accounts \
-  -H "Authorization: Bearer %test_secret_key%" \
-  -d "sender={SENDER_ID}" \
-  -d "name=Abdullah Mohamed Alahmed" \
-  -d "iban=AE070331234567890123456" \
-  -d "currency=AED"
+curl https://api.stgverifypayments.com/banks \
+  -H "Authorization: Token %test_public_key%"
 ```
 
 ### HTTP Request
 
-`POST https://api.verifypayments.com/bank_accounts`
+`GET https://api.stgverifypayments.com/banks`
 
 ### Query Parameters
 
-Parameter | Description
---------- | -----------
-sender<div class=how_required>Optional</div> | The Sender ID that this bank account is associated with. Required when account is associated with a sender.
-receiver<div class=how_required>Optional</div> | The Receiver ID that this bank account is associated with. Required when account is associated with a receiver.
-name | The name of the person or business that owns the bank account
-iban | The unique, internationally-recognized bank account ID for this account
-currency | The 3-letter [ISO4217 currency code](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) for the bank account
+This endpoint does not require any parameters
 
-## Retrieve a bank account
+> Example Response:
 
-```shell
-curl https://api.verifypayments.com/bank_accounts/<ID> \
-  -H "Authorization: Bearer %test_secret_key%"
+```json
+[
+  {
+    "id": "test_bank",
+    "name": "Test Bank",
+    "object": "bank"
+  }
+]
 ```
 
-### HTTP Request
+# Sessions
 
-`GET https://api.verifypayments.com/bank_accounts/<ID>`
+A Session represents a connection with a customers bank account. An active session must exist beforer a Transfer can be initiated.
 
-### Query Parameters
-
-Parameter | Description
---------- | -----------
-id<div class=how_required>Required</div> | The bank account you'd like to retrieve the details for
-
-# Transfers
-
-A Transfer object is created when you initiate a transfer from a `source` bank account to a `destination` bank account. Most transfers require [Verifications](#verifications) to complete.
-
-## The transfer object
+## The session object
 
 ```json
 {
-  "id": "tr_a52e8452378ed0f77540a5084fc3b702",
-  "object": "transfer",
-  "currency": "AED",
-  "amount": "10000",
-  "status": "success",
-  "source_id": "ba_8676aa794678cc51c9f1538893518e6d",
-  "destination_id": "ba_b7739d06fbf4d4aa2460c69686eb1d56",
-  "created_at": "2018-03-01T13:12:22-08:00"
+  "id": "ses_pvhOgYMSNPpM",
+  "object": "session",
+  "status": "initial",
+  "created_at": "2018-08-19T10:10:43.612Z",
+  "updated_at": "2018-08-19T10:10:43.612Z"
 }
 ```
 
@@ -131,67 +109,33 @@ A Transfer object is created when you initiate a transfer from a `source` bank a
 
 Parameter | Description
 --------- | -----------
-id | The unique ID of this specific bank transfer
-object | The type of the object (always `transfer` for Transfers)
-currency | The 3-letter [ISO4217 currency code](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) for the transfer
-amount | The transfer amount, in fils (e.g. 1000 = AED10.00)
-status | The status of the transfer. Can be either `pending`, `failed` or `success`
-source_id | The source [Bank Account](#the-bank-account-object) from which funds will be withdrawn. This must belong to a `sender`
-destination_id | The destination [Bank Account](#the-bank-account-object) to which funds will be deposited. This must belong to a `receiver`
+id | The unique ID of this specific session
+object | The type of the object (always `session` for Sessions)
+status | The status of the session. Can be either `initial`,  `pending_verification`, `connected`, `failed` or `completed`
 
-## Create a transfer
+## Create a session
+
+> A session can only be created using your **secret key**
 
 ```shell
-curl "https://api.verifypayments.com/transfers/" \
-  -H "Authorization: Bearer %test_secret_key%" \
+curl "https://api.stgverifypayments.com/sessions/" \
+  -H "Authorization: Token %test_secret_key%" \
   -d "currency=AED" \
   -d "amount=10000" \
-  -d "source_id=ba_8676aa794678cc51c9f1538893518e6d" \
-  -d "destination_id=ba_b7739d06fbf4d4aa2460c69686eb1d56"
+  -d "description=My First Session" \
 ```
 
 ### HTTP Request
 
-`POST https://api.verifypayments.com/transfers/`
+`POST https://api.stgverifypayments.com/sessions/`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-currency | The 3-letter [ISO4217 currency code](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) for the transfer
+currency | The 3-letter [ISO4217 currency code](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) for the transfer that you will create after this session is established
 amount | The transfer amount, in fils (e.g. 1000 = AED10.00)
-source_id | The source [Bank Account](#the-bank-account-object) from which funds will be withdrawn. This must belong to the presently authenticated `sender` (i.e. whose API key is used to submit the request)
-destination_id | The destination [Bank Account](#the-bank-account-object) to which funds will be deposited. This must belong to a `receiver`
-
-## Get all transfers
-
-```shell
-curl "https://api.verifypayments.com/transfers" \
-  -H "Authorization: Bearer %test_secret_key%"
-```
-
-This endpoint retrieves all transfers, sorted in reverse-chronological order (i.e. from newest to oldest).
-
-### HTTP Request
-
-`GET https://api.verifypayments.com/transfers`
-
-## Retrieve a specific transfer
-
-```shell
-curl "https://api.verifypayments.com/transfers/<ID>" \
-  -H "Authorization: Bearer %test_secret_key%"
-```
-
-### HTTP Request
-
-`GET https://api.verifypayments.com/transfers/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-id<div class=how_required>Required</div> | The ID of the transfer we'd like to retrieve
+description | A desciption that can be included on the checkout screen shown to the user
 
 # Verifications
 
@@ -235,9 +179,9 @@ transfer_id | The [Transfer](#the-transfer-object) to which this verification be
 ## Submit a verification
 
 ```shell
-curl "https://api.verifypayments.com/verifications/<ID>" \
+curl "https://api.stgverifypayments.com/verifications/<ID>" \
   -X PUT \
-  -H "Authorization: Bearer %test_secret_key%" \
+  -H "Authorization: Token %test_secret_key%" \
   -d "challenge_response=123456"
 ```
 
