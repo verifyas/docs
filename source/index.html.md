@@ -278,24 +278,108 @@ curl "https://api.stgverifypayments.com/sessions/<id>/bank_accounts" \
 ]
 ```
 
-### URL Parameters
+### Parameters
 
 This endpoint does not require any parameters
 
 # Transfers
 
+A Transfer object represents an instruction to move funds from the source account of the authenticated customer to the merchants account.
 
 ## The Transfer object
 
 ```json
-
+{
+  "id": "tr_F2sqeKZa8ppl",
+  "object": "transfer",
+  "bank_id": "test_bank",
+  "source_id": "ba_l5uF4BMbTh4L",
+  "status": "pending_verification",
+  "amount": 100,
+  "currency": "BHD",
+  "description": "NA",
+  "verification": {
+    "attempt_count": 0,
+    "challenge_text": "Please, enter test OTP (1234 to finish or 12345 for one more verification)",
+    "id": "vrf_gWHiYgmdX6cM",
+    "object": "verification",
+    "status": "initial",
+    "type": "sms",
+    "verifiable_id": "tr_F2sqeKZa8ppl",
+    "verifiable_type": "transfer"
+  },
+  "session_id": "ses_2Ocvnws4y3Yr",
+  "created_at": "2018-08-19T15:27:15.502Z",
+  "updated_at": "2018-08-19T15:27:15.607Z"
+}
 ```
 
 ### Parameters
 
 Parameter | Description
 --------- | -----------
+id | The unique ID of this specific transfer
+object | The type of the object (always `transfer` for Transfers)
+bank_id | The [Bank](#the-bank-object) that this transfer originates from
+source_id | The [Bank Account](#the-bank-account-object) that will fund this transfer
+status | The status of this transfer. Can be either `initial`, `succeeded`, `pending_verification` or `failed`
+amount | The transfer amount, in fils. This is set when the session object [is created](#create-a-session)
+currency | The 3-letter [ISO4217 currency code](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) for this bank account
+description | A description that can be used to describe the purpose of the transfer
+verification | A [Verification](#the-verification-object) object
+session_id | Identifies the session that this bank account belongs to
 
+## Create a Transfer
+
+> Example Request:
+
+```shell
+curl "https://api.stgverifypayments.com/sessions/<id>/transfers" \
+  -H "Authorization: Token %test_public_key%" \
+  -d "source=ba_kEUWd9qXlyCx"
+```
+
+### HTTP Request
+
+`POST https://api.stgverifypayments.com/sessions/<id>/transfers`
+
+> Example Response:
+
+```json
+{
+  "id": "tr_F2sqeKZa8ppl",
+  "object": "transfer",
+  "bank_id": "test_bank",
+  "source_id": "ba_l5uF4BMbTh4L",
+  "status": "pending_verification",
+  "amount": 100,
+  "currency": "BHD",
+  "description": "NA",
+  "verification": {
+    "attempt_count": 0,
+    "challenge_text": "Please, enter test OTP (1234 to finish or 12345 for one more verification)",
+    "id": "vrf_gWHiYgmdX6cM",
+    "object": "verification",
+    "status": "initial",
+    "type": "sms",
+    "verifiable_id": "tr_F2sqeKZa8ppl",
+    "verifiable_type": "transfer"
+  },
+  "session_id": "ses_2Ocvnws4y3Yr",
+  "created_at": "2018-08-19T15:27:15.502Z",
+  "updated_at": "2018-08-19T15:27:15.607Z"
+}
+```
+
+### Parameters
+
+Parameter | Description
+--------- | -----------
+source<div class=how_required>Required</div> | The [Bank Account](#the-bank-account-object) that will be used to fund the transfer. You can retrieve a list of all bank accounts for the authenticated user [here](#list-all-bank-accounts).
+
+<aside class=notice><strong>Note</strong> &mdash; The currency of the source account and the currency specified when creating the session must match</aside>
+
+<aside class=notice>A transfer will likely require verification in order to successfully complete. See <a href="#verifications">Verification</a> for details.</aside>
 
 # Verifications
 
