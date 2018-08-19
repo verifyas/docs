@@ -11,7 +11,7 @@ search: true
 Welcome to the Verify Payments API 👋! The reference documentation below describes the various functions that you can use to initiate, track and manage fiat transfer using the Verify Payments API.
 
 <aside class="notice">
-This API is currently in alpha. We may push breaking changes to the API endpoints on short notice. Make sure to <a href="https://groups.google.com/a/lists.verify.as/forum/#!forum/api-announcements" target="_blank" data-link="_">join our mailing list</a> to get notified of such changes ahead of time.
+This API is currently in beta. We may push breaking changes to the API endpoints on short notice. Make sure to <a href="https://groups.google.com/a/lists.verify.as/forum/#!forum/api-announcements" target="_blank" data-link="_">join our mailing list</a> to get notified of such changes ahead of time.
 </aside>
 
 # Authentication
@@ -20,40 +20,35 @@ This API is currently in alpha. We may push breaking changes to the API endpoint
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "https://api.verifypayments.com/" \
-  -H "Authorization: Bearer %test_secret_key%"
+curl "https://api.stgverifypayments.com/" \
+  -H "Authorization: Token %test_secret_key%"
 ```
 
 > The code above actually works. You can paste it directly in your terminal to try it out!
 
-You can authenticate requests to the Verify Payments API by including your secret key in the request that you send. We currently use [Bearer authentication](https://tools.ietf.org/html/rfc6750) without the underlying OAuth 2.0 protocol.
+You can authenticate requests to the Verify Payments API by including your public key or secret key in the request that you send, depending on the endpoint. Each endpoint will indicate which key it expects from you. We currently use [Token authentication](https://tools.ietf.org/html/rfc6750) without the underlying OAuth 2.0 protocol.
 
 <aside class=notice>
-<strong>Heads up</strong> &mdash; We plan to add SSL/TLS certificate-based authentication in the near future.
+<strong>Heads up</strong> &mdash; Never use your <strong>secret key</strong> in any public environments including client-side web apps or mobile applications. It should only be used in direct server-to-server calls.
 </aside>
 
-The token access keys used to authenticate with the API are generated through the Dashboard &mdash; keep these private! Make sure not to commit them to your source code repositories or share them.
+The private keys used to authenticate with the API are generated through the Dashboard &mdash; keep these private! Make sure not to commit them to your source code repositories or share them.
 
-Include the API key for all requests to the server in a header that looks like the following: `Authorization: Bearer "%test_secret_key%"`
+Include the API key for all requests to the server in a header that looks like the following: `Authorization: Token "%test_secret_key%"`
 
 All API calls must be made using [HTTPS](http://en.wikipedia.org/wiki/HTTP_Secure). Calls made over unsecured HTTP connections will fail.
 
-# Bank Accounts
+# Banks
 
-A Bank Account object is created when a user logs in with their online banking credentials. Verify retrieves the various account details and creates Bank Account objects for each supported account. These objects can then be used to initiate [Transfers](#transfers).
+Before the user can sign in to their bank, they must select one from a list of supported banks.
 
-## The bank account object
+## The bank object
 
 ```json
 {
-  "id": "ba_81047f09b378e5fe896372868579fb06",
-  "object": "bank_account",
-  "name": "Abdullah Mohamed Alahmed",
-  "is_individual": "true",
-  "account_number": "67890123456",
-  "iban": "AE070331234567890123456",
-  "currency": "AED",
-  "last_accessed": "2018-03-01T13:12:22-08:00"
+  "id": "test_bank",
+  "object": "bank",
+  "name": "Test Bank"
 }
 ```
 
