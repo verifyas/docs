@@ -2,6 +2,7 @@
 @import 'normalize';
 @import 'variables';
 @import 'icon-font';
+@import 'custom';
 // @import 'rtl'; // uncomment to switch to RTL format
 
 /*
@@ -529,7 +530,8 @@ html, body {
     padding: 10px 20px;
     color: $code-color;
     background-color: #062A2F;
-    overflow-x: scroll;
+    overflow-x: auto; /* was 'scroll' */
+    @extend %scrollbar;
   }
 
   aside {
