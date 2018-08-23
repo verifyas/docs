@@ -1,0 +1,851 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" href="../images/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../images/favicon-16x16.png" sizes="16x16" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,700" rel="stylesheet">
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <a href="/"><img src="images/logo.svg" class="logo" alt="Logo" /></a>
+      <hr class="separator">
+      <div id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+          </li>
+          <li>
+            <a href="#banks" class="toc-h1 toc-link" data-title="Banks">Banks</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#the-bank-object" class="toc-h2 toc-link" data-title="The bank object">The bank object</a>
+                  </li>
+                  <li>
+                    <a href="#list-all-banks" class="toc-h2 toc-link" data-title="List all banks">List all banks</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#sessions" class="toc-h1 toc-link" data-title="Sessions">Sessions</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#the-session-object" class="toc-h2 toc-link" data-title="The session object">The session object</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-session" class="toc-h2 toc-link" data-title="Create a session">Create a session</a>
+                  </li>
+                  <li>
+                    <a href="#login-to-a-session" class="toc-h2 toc-link" data-title="Login to a session">Login to a session</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#bank-accounts" class="toc-h1 toc-link" data-title="Bank accounts">Bank Accounts</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#the-bank-account-object" class="toc-h2 toc-link" data-title="The bank account object">The Bank Account object</a>
+                  </li>
+                  <li>
+                    <a href="#list-all-bank-accounts" class="toc-h2 toc-link" data-title="List all bank accounts">List all bank accounts</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#transfers" class="toc-h1 toc-link" data-title="Transfers">Transfers</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#the-transfer-object" class="toc-h2 toc-link" data-title="The transfer object">The Transfer object</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-transfer" class="toc-h2 toc-link" data-title="Create a transfer">Create a Transfer</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#verifications" class="toc-h1 toc-link" data-title="Verifications">Verifications</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#the-verification-object" class="toc-h2 toc-link" data-title="The verification object">The verification object</a>
+                  </li>
+                  <li>
+                    <a href="#submit-a-verification" class="toc-h2 toc-link" data-title="Submit a verification">Submit a verification</a>
+                  </li>
+              </ul>
+          </li>
+      </div>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>Welcome to the Verify Payments API 👋! The reference documentation below describes the various functions that you can use to initiate, track and manage fiat transfer using the Verify Payments API.</p>
+
+<aside class="notice">
+This API is currently in beta. We may push breaking changes to the API endpoints on short notice. Make sure to <a href="https://groups.google.com/a/lists.verify.as/forum/#!forum/api-announcements" target="_blank" data-link="_">join our mailing list</a> to get notified of such changes ahead of time.
+</aside>
+<h1 id='authentication'>Authentication</h1>
+<blockquote>
+<p>To authorize, use this code:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"https://api.stgverifypayments.com/"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Token %test_secret_key%"</span>
+</code></pre>
+<blockquote>
+<p>The code above actually works. You can paste it directly in your terminal to try it out!</p>
+</blockquote>
+
+<p>You can authenticate requests to the Verify Payments API by including your public key or secret key in the request that you send, depending on the endpoint. Each endpoint will indicate which key it expects from you. We currently use <a href="https://tools.ietf.org/html/rfc6750">Token authentication</a> without the underlying OAuth 2.0 protocol.</p>
+
+<aside class=notice>
+<strong>Heads up</strong> &mdash; Never use your <strong>secret key</strong> in any public environments including client-side web apps or mobile applications. It should only be used in direct server-to-server calls.
+</aside>
+
+<p>The private keys used to authenticate with the API are generated through the Dashboard &mdash; keep these private! Make sure not to commit them to your source code repositories or share them.</p>
+
+<p>Include the API key for all requests to the server in a header that looks like the following: <code>Authorization: Token &quot;%test_secret_key%&quot;</code></p>
+
+<p>All API calls must be made using <a href="http://en.wikipedia.org/wiki/HTTP_Secure">HTTPS</a>. Calls made over unsecured HTTP connections will fail.</p>
+<h1 id='banks'>Banks</h1>
+<p>Before the user can sign in to their bank, they must select one from a list of supported banks.</p>
+<h2 id='the-bank-object'>The bank object</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test_bank"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bank"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Bank"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='parameters'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>The unique ID of this specific bank</td>
+</tr>
+<tr>
+<td>object</td>
+<td>The type of the object (always <code>bank</code> for Banks)</td>
+</tr>
+<tr>
+<td>name</td>
+<td>The name of the bank in user-readable form</td>
+</tr>
+</tbody></table>
+<h2 id='list-all-banks'>List all banks</h2>
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl https://api.stgverifypayments.com/banks <span class="se">\</span>
+  -H <span class="s2">"Authorization: Token %test_public_key%"</span>
+</code></pre><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.stgverifypayments.com/banks</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<p>This endpoint does not require any parameters</p>
+
+<blockquote>
+<p>Example Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test_bank"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Bank"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bank"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h1 id='sessions'>Sessions</h1>
+<p>A Session represents a connection with a customers bank account. An active session must exist beforer a Transfer can be initiated.</p>
+<h2 id='the-session-object'>The session object</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ses_pvhOgYMSNPpM"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"session"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"initial"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-19T10:10:43.612Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-19T10:10:43.612Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='parameters-2'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>The unique ID of this specific session</td>
+</tr>
+<tr>
+<td>object</td>
+<td>The type of the object (always <code>session</code> for Sessions)</td>
+</tr>
+<tr>
+<td>status</td>
+<td>The status of the session. Can be either <code>initial</code>,  <code>pending_verification</code>, <code>connected</code>, <code>failed</code> or <code>completed</code></td>
+</tr>
+</tbody></table>
+<h2 id='create-a-session'>Create a session</h2>
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+
+<aside class=notice><strong>Note</strong> &mdash; A session can only be created using your <strong>secret key</strong></aside>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.stgverifypayments.com/sessions/"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Token %test_secret_key%"</span> <span class="se">\</span>
+  -d <span class="s2">"currency=AED"</span> <span class="se">\</span>
+  -d <span class="s2">"amount=10000"</span> <span class="se">\</span>
+  -d <span class="s2">"description=My First Session"</span>
+</code></pre><h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST https://api.stgverifypayments.com/sessions/</code></p>
+
+<blockquote>
+<p>Example Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ses_rDCKbNpZhfzF"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"session"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"initial"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-19T10:50:28.297Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-19T10:50:28.297Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currency</td>
+<td>The 3-letter <a href="https://en.wikipedia.org/wiki/ISO_4217#Active_codes">ISO4217 currency code</a> for the transfer that you will create after this session is established</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>The transfer amount, in fils (e.g. 1000 = AED10.00)</td>
+</tr>
+<tr>
+<td>description</td>
+<td>A desciption that can be included on the checkout screen shown to the user</td>
+</tr>
+</tbody></table>
+<h2 id='login-to-a-session'>Login to a session</h2>
+<p>Once a session is created, we then have to authenticate the session by calling the <code>login</code> endpoint, making sure to include the <code>id</code> of the session that we&#39;re referring to in the request URL.</p>
+
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.stgverifypayments.com/sessions/&lt;id&gt;/login"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Token %test_public_key%"</span> <span class="se">\</span>
+  -d <span class="s2">"bank_id=test_bank"</span> <span class="se">\</span>
+  -d <span class="s2">"credentials[login]=test"</span> <span class="se">\</span>
+  -d <span class="s2">"credentials[password]=test_pass"</span>
+</code></pre><h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST https://api.stgverifypayments.com/sessions/&lt;id&gt;/login</code></p>
+
+<blockquote>
+<p>Example Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ses_2Ocvnws4y3Yr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"session"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"connected"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-19T12:21:34.784Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-19T12:21:51.757Z"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='url-parameters-2'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>bank_id</td>
+<td>The ID of the <a href="#the-bank-object">Bank</a> that the user will attempt to login to</td>
+</tr>
+<tr>
+<td>credentials</td>
+<td>A hash containing the online banking credentials supplied by the user, for authentication. This should include a <code>login</code> and <code>password</code> field containing the respective values</td>
+</tr>
+</tbody></table>
+
+<aside class=notice>A session may require verification in order to successfully authenticate. See <a href="#verifications">Verification</a> for details.</aside>
+<h1 id='bank-accounts'>Bank Accounts</h1>
+<p>Once a session has been established, you can retrieve a list of Bank Accounts that the account owner can choose from when performing the transfer.</p>
+<h2 id='the-bank-account-object'>The Bank Account object</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ba_kEUWd9qXlyCx"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bank_account"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bank_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test_bank"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AE070331234567890123456"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567890123456"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"current"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"session_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ses_2Ocvnws4y3Yr"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='parameters-3'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>The unique ID of this specific bank account. Note that this ID is unique to the current session</td>
+</tr>
+<tr>
+<td>object</td>
+<td>The type of the object (always <code>bank_account</code> for Bank Accounts)</td>
+</tr>
+<tr>
+<td>bank_id</td>
+<td>The <a href="#the-bank-object">Bank</a> that this account belongs to</td>
+</tr>
+<tr>
+<td>iban</td>
+<td>The <a href="https://en.wikipedia.org/wiki/International_Bank_Account_Number">IBAN</a> is an alphanumeric string of up to 34 characters that uniquely identifies account numbers globally</td>
+</tr>
+<tr>
+<td>number</td>
+<td>The account number. Exact length varies by bank and type of account</td>
+</tr>
+<tr>
+<td>type</td>
+<td>The type of this account (either <code>current</code> or <code>savings</code>)</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>The 3-letter <a href="https://en.wikipedia.org/wiki/ISO_4217#Active_codes">ISO4217 currency code</a> for this bank account</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>The account balance, in fils</td>
+</tr>
+<tr>
+<td>session_id</td>
+<td>Identifies the session that this bank account belongs to</td>
+</tr>
+</tbody></table>
+<h2 id='list-all-bank-accounts'>List all bank accounts</h2>
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.stgverifypayments.com/sessions/&lt;id&gt;/bank_accounts"</span> <span class="se">\</span>
+  -X GET
+  -H <span class="s2">"Authorization: Token %test_public_key%"</span>
+</code></pre><h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET https://api.stgverifypayments.com/sessions/&lt;id&gt;/bank_accounts</code></p>
+
+<blockquote>
+<p>Example Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bank_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test_bank"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AED"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AE070331234567890123456"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ba_kEUWd9qXlyCx"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567890123456"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bank_account"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"session_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ses_2Ocvnws4y3Yr"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"current"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bank_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test_bank"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AE070331234567890123457"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ba_4yiusVJdVxqC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567890123457"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bank_account"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"session_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ses_2Ocvnws4y3Yr"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"savings"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bank_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test_bank"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BHD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AE070331234567890123458"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ba_l5uF4BMbTh4L"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567890123458"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bank_account"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"session_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ses_2Ocvnws4y3Yr"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"savings"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='parameters-4'>Parameters</h3>
+<p>This endpoint does not require any parameters</p>
+<h1 id='transfers'>Transfers</h1>
+<p>A Transfer object represents an instruction to move funds from the source account of the authenticated customer to the merchants account.</p>
+<h2 id='the-transfer-object'>The Transfer object</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tr_F2sqeKZa8ppl"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transfer"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bank_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test_bank"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"source_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ba_l5uF4BMbTh4L"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending_verification"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BHD"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NA"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"verification"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"attempt_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"challenge_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please, enter test OTP (1234 to finish or 12345 for one more verification)"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vrf_gWHiYgmdX6cM"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"verification"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"initial"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sms"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"verifiable_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tr_F2sqeKZa8ppl"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"verifiable_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transfer"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"session_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ses_2Ocvnws4y3Yr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-19T15:27:15.502Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-19T15:27:15.607Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='parameters-5'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>The unique ID of this specific transfer</td>
+</tr>
+<tr>
+<td>object</td>
+<td>The type of the object (always <code>transfer</code> for Transfers)</td>
+</tr>
+<tr>
+<td>bank_id</td>
+<td>The <a href="#the-bank-object">Bank</a> that this transfer originates from</td>
+</tr>
+<tr>
+<td>source_id</td>
+<td>The <a href="#the-bank-account-object">Bank Account</a> that will fund this transfer</td>
+</tr>
+<tr>
+<td>status</td>
+<td>The status of this transfer. Can be either <code>initial</code>, <code>succeeded</code>, <code>pending_verification</code> or <code>failed</code></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>The transfer amount, in fils. This is set when the session object <a href="#create-a-session">is created</a></td>
+</tr>
+<tr>
+<td>currency</td>
+<td>The 3-letter <a href="https://en.wikipedia.org/wiki/ISO_4217#Active_codes">ISO4217 currency code</a> for this bank account</td>
+</tr>
+<tr>
+<td>description</td>
+<td>A description that can be used to describe the purpose of the transfer</td>
+</tr>
+<tr>
+<td>verification</td>
+<td>A <a href="#the-verification-object">Verification</a> object</td>
+</tr>
+<tr>
+<td>session_id</td>
+<td>Identifies the session that this bank account belongs to</td>
+</tr>
+</tbody></table>
+<h2 id='create-a-transfer'>Create a Transfer</h2>
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.stgverifypayments.com/sessions/&lt;id&gt;/transfers"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Token %test_public_key%"</span> <span class="se">\</span>
+  -d <span class="s2">"source=ba_kEUWd9qXlyCx"</span>
+</code></pre><h3 id='http-request-5'>HTTP Request</h3>
+<p><code>POST https://api.stgverifypayments.com/sessions/&lt;id&gt;/transfers</code></p>
+
+<blockquote>
+<p>Example Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tr_F2sqeKZa8ppl"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transfer"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bank_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test_bank"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"source_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ba_l5uF4BMbTh4L"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending_verification"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BHD"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NA"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"verification"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"attempt_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"challenge_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please, enter test OTP (1234 to finish or 12345 for one more verification)"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vrf_gWHiYgmdX6cM"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"verification"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"initial"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sms"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"verifiable_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tr_F2sqeKZa8ppl"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"verifiable_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transfer"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"session_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ses_2Ocvnws4y3Yr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-19T15:27:15.502Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-19T15:27:15.607Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='parameters-6'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>source<div class=how_required>Required</div></td>
+<td>The <a href="#the-bank-account-object">Bank Account</a> that will be used to fund the transfer. You can retrieve a list of all bank accounts for the authenticated user <a href="#list-all-bank-accounts">here</a>.</td>
+</tr>
+</tbody></table>
+
+<aside class=notice><strong>Note</strong> &mdash; The currency of the source account and the currency specified when creating the session must match</aside>
+
+<aside class=notice>A transfer will likely require verification in order to successfully complete. See <a href="#verifications">Verification</a> for details.</aside>
+<h1 id='verifications'>Verifications</h1>
+<p>Creating a <a href="#sessions">Session</a> or <a href="#transfers">Transfer</a> can sometimes require additional verification by our banking providers. There are currently 2 supported methods for verification:</p>
+
+<table><thead>
+<tr>
+<th>Verification Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>sms</code></td>
+<td>An SMS code is sent to the registered mobile device and the account owner is requested to provide the numeric code</td>
+</tr>
+<tr>
+<td><code>questions</code></td>
+<td>The banking provider returns question(s) and the account owner is requested to supply the answers to these questions</td>
+</tr>
+</tbody></table>
+
+<p>The specific verification method required will depend on several things including the bank that a transfer is initiated from and whether a transfer has previously been completed from this customers&#39; account.</p>
+<h2 id='the-verification-object'>The verification object</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vrf_zGf5ZH3LzXDz"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"verification"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sms"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"initial"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"verifiable_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ses_2Ocvnws4y3Yr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"verifiable_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"session"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"attempt_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"challenge_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please, enter test OTP (1234 to finish or 12345 for one more verification)"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='parameters-7'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>The unique ID of this verification</td>
+</tr>
+<tr>
+<td>object</td>
+<td>The type of the object (always <code>verification</code> for Verifications)</td>
+</tr>
+<tr>
+<td>type</td>
+<td>The method of verification required (either <code>sms</code> or <code>questions</code>)</td>
+</tr>
+<tr>
+<td>status</td>
+<td>The status of the verification. Can be either <code>initial</code>, <code>retry</code>, <code>succeeded</code> or <code>failed</code></td>
+</tr>
+<tr>
+<td>challenge_text</td>
+<td>A human-friendly text that can be displayed to the account owner in your custom UI</td>
+</tr>
+<tr>
+<td>verifiable_type</td>
+<td>The Type of the object that this verification is for. Can either be <code>transfer</code> or <code>session</code></td>
+</tr>
+<tr>
+<td>verifiable_id</td>
+<td>The ID of the <a href="#the-transfer-object">Transfer</a> or <a href="#the-session-object">Session</a> to which this verification belongs</td>
+</tr>
+<tr>
+<td>attempt_count</td>
+<td>The number of times this verification has been attempted</td>
+</tr>
+</tbody></table>
+<h2 id='submit-a-verification'>Submit a verification</h2>
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.stgverifypayments.com/sessions/&lt;id&gt;/verifications/&lt;id&gt;"</span> <span class="se">\</span>
+  -X PUT <span class="se">\</span>
+  -H <span class="s2">"Authorization: Token %test_public_key%"</span> <span class="se">\</span>
+  -d <span class="s2">"challenge_response=12345"</span>
+</code></pre>
+<p>Submit the <code>challenge_response</code> or <code>answers[]</code> for a verification. This request is idempotent, and you can safely submit the request multiple times.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>PUT /sessions/&lt;id&gt;/verifications/&lt;id&gt;</code> or <code>PUT /transfers/&lt;id&gt;/verifications/&lt;id&gt;</code></p>
+
+<blockquote>
+<p>Example Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vrf_zGf5ZH3LzXDz"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"verification"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sms"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"attempt_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"challenge_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please, enter test OTP (1234 to finish or 12345 for one more verification)"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"succeeded"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"verifiable_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ses_2Ocvnws4y3Yr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"verifiable_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"session"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"verifiable"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ses_2Ocvnws4y3Yr"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"session"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending_verification"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"verification"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vrf_ZhNRoP5eLx60"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"verification"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"initial"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"questions"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"What is your favorite language (ruby)"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"What is your favorite editor (vim)"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"attempt_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"verifiable_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ses_2Ocvnws4y3Yr"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"verifiable_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"session"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-19T12:21:34.784Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-19T13:49:51.688Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='parameters-8'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>challenge_response<div class=how_required>Optional</div></td>
+<td>The response provided by the customer to the <code>sms</code> verification challenge (e.g. <code>&quot;12345&quot;</code>)</td>
+</tr>
+<tr>
+<td>answers[]<div class=how_required>Optional</div></td>
+<td>The response provided by the customer to the <code>questions</code> verification challenge. This is an array (e.g. <code>[&quot;first&quot;, &quot;second&quot;]</code>)</td>
+</tr>
+</tbody></table>
+
+<aside class=notice><strong>Notice</strong> &mdash; A verification may return another verification. Check the <code>status</code> of the included <code>verifiable</code> object to determine if this is the case</aside>
+
+      </div>
+      <div class="dark-box">
+      </div>
+    </div>
+  </body>
+</html>
