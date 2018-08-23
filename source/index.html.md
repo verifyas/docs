@@ -230,7 +230,7 @@ session_id | Identifies the session that this bank account belongs to
 
 ```shell
 curl "https://api.stgverifypayments.com/sessions/<id>/bank_accounts" \
-  -X GET
+  -X GET \
   -H "Authorization: Token %test_public_key%"
 ```
 
