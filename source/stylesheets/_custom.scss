@@ -16,3 +16,7 @@
   	background-color: #eee;
   }
 }
+
+.toc-link {
+  overflow-y: hidden; /* prevent scrollbars on Windows */
+}
