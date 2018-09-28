@@ -3,9 +3,12 @@
  *   %test_secret_key%
  *   %test_public_key%
  */
+const API_BASE = 'https://api.verifypayments.com';
 
 $(function(){
-  fetch('https://api.stgverifypayments.com/test_data')
+  findAndReplaceApiEndpoint();
+
+  fetch(API_BASE + "/test_data")
     .then(function(response) {
       return response.json();
     })
@@ -13,6 +16,14 @@ $(function(){
       findAndReplaceApiKeys(obj.api_keys[0]);
     });
 });
+
+function findAndReplaceApiEndpoint() {
+  window.findAndReplaceDOMText(
+    document.getElementsByTagName('body')[0], {
+      find: /%api_endpoint%/g,
+      replace: API_BASE
+    });
+}
 
 function findAndReplaceApiKeys(keys) {
   window.findAndReplaceDOMText(

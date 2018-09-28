@@ -8,7 +8,7 @@ search: true
 
 # Introduction
 
-Welcome to the Verify Payments API 👋! The reference documentation below describes the various functions that you can use to initiate, track and manage fiat transfer using the Verify Payments API.
+Welcome to the Verify Payments API 👋! The reference documentation below describes the various functions that you can use to initiate, track and manage fiat transfers using the Verify Payments API.
 
 <aside class="notice">
 This API is currently in beta. We may push breaking changes to the API endpoints on short notice. Make sure to <a href="https://groups.google.com/a/lists.verify.as/forum/#!forum/api-announcements" target="_blank" data-link="_">join our mailing list</a> to get notified of such changes ahead of time.
@@ -20,7 +20,7 @@ This API is currently in beta. We may push breaking changes to the API endpoints
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "https://api.stgverifypayments.com/" \
+curl "%api_endpoint%/" \
   -H "Authorization: Token %test_secret_key%"
 ```
 
@@ -65,13 +65,13 @@ name | The name of the bank in user-readable form
 > Example Request:
 
 ```shell
-curl https://api.stgverifypayments.com/banks \
+curl %api_endpoint%/banks \
   -H "Authorization: Token %test_public_key%"
 ```
 
 ### HTTP Request
 
-`GET https://api.stgverifypayments.com/banks`
+`GET %api_endpoint%/banks`
 
 ### Query Parameters
 
@@ -120,7 +120,7 @@ status | The status of the session. Can be either `initial`,  `pending_verificat
 <aside class=notice><strong>Note</strong> &mdash; A session can only be created using your <strong>secret key</strong></aside>
 
 ```shell
-curl "https://api.stgverifypayments.com/sessions/" \
+curl "%api_endpoint%/sessions/" \
   -H "Authorization: Token %test_secret_key%" \
   -d "currency=AED" \
   -d "amount=10000" \
@@ -129,7 +129,7 @@ curl "https://api.stgverifypayments.com/sessions/" \
 
 ### HTTP Request
 
-`POST https://api.stgverifypayments.com/sessions/`
+`POST %api_endpoint%/sessions/`
 
 > Example Response:
 
@@ -158,7 +158,7 @@ Once a session is created, we then have to authenticate the session by calling t
 > Example Request:
 
 ```shell
-curl "https://api.stgverifypayments.com/sessions/<id>/login" \
+curl "%api_endpoint%/sessions/<id>/login" \
   -H "Authorization: Token %test_public_key%" \
   -d "bank_id=test_bank" \
   -d "credentials[login]=test" \
@@ -167,7 +167,7 @@ curl "https://api.stgverifypayments.com/sessions/<id>/login" \
 
 ### HTTP Request
 
-`POST https://api.stgverifypayments.com/sessions/<id>/login`
+`POST %api_endpoint%/sessions/<id>/login`
 
 > Example Response:
 
@@ -229,14 +229,14 @@ session_id | Identifies the session that this bank account belongs to
 > Example Request:
 
 ```shell
-curl "https://api.stgverifypayments.com/sessions/<id>/bank_accounts" \
+curl "%api_endpoint%/sessions/<id>/bank_accounts" \
   -X GET \
   -H "Authorization: Token %test_public_key%"
 ```
 
 ### HTTP Request
 
-`GET https://api.stgverifypayments.com/sessions/<id>/bank_accounts`
+`GET %api_endpoint%/sessions/<id>/bank_accounts`
 
 > Example Response:
 
@@ -334,14 +334,14 @@ session_id | Identifies the session that this bank account belongs to
 > Example Request:
 
 ```shell
-curl "https://api.stgverifypayments.com/sessions/<id>/transfers" \
+curl "%api_endpoint%/sessions/<id>/transfers" \
   -H "Authorization: Token %test_public_key%" \
   -d "source=ba_kEUWd9qXlyCx"
 ```
 
 ### HTTP Request
 
-`POST https://api.stgverifypayments.com/sessions/<id>/transfers`
+`POST %api_endpoint%/sessions/<id>/transfers`
 
 > Example Response:
 
@@ -425,7 +425,7 @@ attempt_count | The number of times this verification has been attempted
 > Example Request:
 
 ```shell
-curl "https://api.stgverifypayments.com/sessions/<id>/verifications/<id>" \
+curl "%api_endpoint%/sessions/<id>/verifications/<id>" \
   -X PUT \
   -H "Authorization: Token %test_public_key%" \
   -d "challenge_response=12345"
