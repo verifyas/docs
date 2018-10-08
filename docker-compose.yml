@@ -1,0 +1,8 @@
+version: '3.2'
+services:
+  docs:
+    build: .
+    volumes: 
+      - ./:/usr/src/app
+    ports:
+      - 4567:4567
