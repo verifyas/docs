@@ -190,6 +190,33 @@ credentials | A hash containing the online banking credentials supplied by the u
 
 <aside class=notice>A session may require verification in order to successfully authenticate. See <a href="#verifications">Verification</a> for details.</aside>
 
+## Retrieve a session
+
+> Example Request:
+
+```shell
+curl "%api_endpoint%/sessions/:id" \
+  -H "Authorization: Token %test_secret_key%"
+```
+
+> Example Response:
+
+```json
+{
+  "id": "ses_rDCKbNpZhfzF",
+  "object": "session",
+  "status": "initial",
+  "created_at": "2018-08-19T10:50:28.297Z",
+  "updated_at": "2018-08-19T10:50:28.297Z"
+}
+```
+
+Retrieves the details of a session.
+
+### HTTP Request
+
+`POST %api_endpoint%/sessions/:id`
+
 # Bank Accounts
 
 Once a session has been established, you can retrieve a list of Bank Accounts that the account owner can choose from when performing the transfer.
