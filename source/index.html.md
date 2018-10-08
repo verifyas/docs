@@ -195,7 +195,7 @@ credentials | A hash containing the online banking credentials supplied by the u
 > Example Request:
 
 ```shell
-curl "%api_endpoint%/sessions/:id" \
+curl "%api_endpoint%/sessions/<id>" \
   -H "Authorization: Token %test_secret_key%"
 ```
 
@@ -215,7 +215,7 @@ Retrieves the details of a session.
 
 ### HTTP Request
 
-`POST %api_endpoint%/sessions/:id`
+`POST %api_endpoint%/sessions/<id>`
 
 # Bank Accounts
 
@@ -409,6 +409,42 @@ source<div class=how_required>Required</div> | The [Bank Account](#the-bank-acco
 <aside class=notice><strong>Note</strong> &mdash; The currency of the source account and the currency specified when creating the session must match</aside>
 
 <aside class=notice>A transfer will likely require verification in order to successfully complete. See <a href="#verifications">Verification</a> for details.</aside>
+
+## Retrieve a transfer
+
+> Example Request:
+
+```shell
+curl "%api_endpoint%/sessions/<id>/transfers/<transfer_id>" \
+  -H "Authorization: Token %test_secret_key%"
+```
+
+> Example Response:
+
+```json
+{
+  "object":"transfer",
+  "id":"tr_F2sqeKZa8ppl",
+  "amount":100,
+  "currency":"BHD",
+  "description":"Test transfer",
+  "status":"succeeded",
+  "session_id":"ses_2Ocvnws4y3Yr",
+  "bank_id":"test_bank",
+  "source_id":"ba_l5uF4BMbTh4L",
+  "created_at": "2018-08-19T15:27:15.502Z",
+  "updated_at": "2018-08-19T15:27:15.607Z"
+  "reference_id":"TRANSFERa003d0398779da23f6a37c80d24e9e0c"
+}
+```
+Retrieves the details of a transfer.
+
+
+### HTTP Request
+
+`POST %api_endpoint%/sessions/<id>/transfers/<transfer_id>`
+
+<aside class=notice><strong>Note</strong> &mdash; you can access this endpoint with both <strong>secret</strong> and <strong>public</strong> keys.</aside>
 
 ## List all session transfers
 
