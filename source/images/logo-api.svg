@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="128px" height="26px" viewBox="0 0 128 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="119px" height="26px" viewBox="0 0 119 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
-    <title>logo</title>
+    <title>logo api</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="logo">
+        <g id="logo-api">
             <g id="Logo" fill="#62B552" fill-rule="nonzero">
                 <g id="element" transform="translate(0.000000, 2.307692)">
                     <path d="M4.18118467,16.0430626 L0,11.861878 L1.11498258,10.7701242 L2.20673635,9.65514161 L6.41114983,13.8595551 L10.5923345,18.0407397 L9.50058072,19.1324935 C8.89663182,19.7364424 8.40882695,20.2242473 8.38559814,20.2242473 C8.36236934,20.2242473 6.48083624,18.3427142 4.18118467,16.0430626 Z" id="Shape"></path>
@@ -22,8 +22,8 @@
                     <path d="M37.2875905,4.29732869 C36.753328,3.7398374 36.637184,3.08943089 36.9623872,2.39256678 C37.217904,1.8583043 37.4501921,1.71893148 38.2399714,1.67247387 C39.0065219,1.62601626 39.2620388,1.69570267 39.5640132,2.13704994 C40.0750469,2.85714286 40.0285893,3.62369338 39.471098,4.18118467 C38.9136067,4.73867596 37.7986241,4.78513357 37.2875905,4.29732869 Z" id="Shape"></path>
                 </g>
             </g>
-            <text id="docs" font-family="OpenSans-SemiBold, Open Sans" font-size="11" font-weight="500" fill="#9BA698">
-                <tspan x="103.5" y="20">docs</tspan>
+            <text id="api" font-family="OpenSans-SemiBold, Open Sans" font-size="11" font-weight="500" fill="#9BA698">
+                <tspan x="103.5" y="20">api</tspan>
             </text>
         </g>
     </g>
