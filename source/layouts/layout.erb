@@ -56,7 +56,7 @@ under the License.
     <div class="toc-wrapper">
       <a href="/"><%= image_tag "logo.svg", class: 'logo' %></a>
       <hr class="separator">
-      <div id="toc" class="toc-list-h1">
+      <ul id="toc" class="toc-list-h1">
         <% toc_data(page_content).each do |h1| %>
           <li>
             <a href="#<%= h1[:id] %>" class="toc-h1 toc-link" data-title="<%= h1[:content].to_s.humanize %>"><%= h1[:content] %></a>
@@ -71,7 +71,10 @@ under the License.
             <% end %>
           </li>
         <% end %>
-      </div>
+       <li>
+           <a href="/api/" class="toc-h1 toc-link">API Reference</a>
+       </li>
+      </ul>
       <% if current_page.data.toc_footers %>
         <ul class="toc-footer">
           <% current_page.data.toc_footers.each do |footer| %>

@@ -6,7 +6,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
 search: true
 ---
 
-# Introduction
+# API Reference
 
 Welcome to the Verify Payments API 👋! The reference documentation below describes the various functions that you can use to initiate, track and manage fiat transfers using the Verify Payments API.
 

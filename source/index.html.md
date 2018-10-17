@@ -1,4 +1,6 @@
-# Getting Started
+# Documentation
+
+## Getting Started
 
 Processing bank transfer with Verify Payments is a two-step process, with a
 server-side and a client-side actions:
@@ -17,7 +19,7 @@ Here is how it looks:
     <img src="/images/how-it-works.png" />
 </div>
 
-## 1. Create a Session. 
+### 1. Create a Session. 
 
 In order to create a session you have to make an API request with amount,
 currency and description at this endpoint:
@@ -50,7 +52,7 @@ request.post({
 });
 ```
 
-## 2. Initiate Transfer
+### 2. Initiate Transfer
 
 Once a session is created, you can render a web page with our JS-SDK to
 initiate transfer. When page loads, you should create a `VerifyPayments`
@@ -75,7 +77,7 @@ button.addEventListener('click', payment.show);
 </script>
 ```
 
-## 3. Process Transfer
+### 3. Process Transfer
 
 When customer clicks the 'Pay' button JS-SDK opens a popup inside the iframe
 with the necessary steps to complete transfer. Once the transfer is processed,
@@ -86,9 +88,9 @@ the callback 'onComplete' will be called with transfer object as argument.
 status. Only Transfer with status <strong>succeeded</strong> can be considered as
 a successfully processed transfer.</aside>
 
-# JS-SDK
+## JS-SDK
 
-## Configuration options
+### Configuration options
 
 The following options should be passed to `VerifyPayments` class:
 
@@ -100,6 +102,6 @@ onComplete | The callback to handle transfer object after it's created
 onClose | The callback to handle close event (when popup is closed)
 
 
-# Support
+## Support
 
 If you have any questions on Verify Payments integration please, let us know at [team@verify.as](mailto:team@verify.as)
