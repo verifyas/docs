@@ -37,7 +37,7 @@ under the License.
     <style>
       <%= Rouge::Themes::MonokaiSublime.render(:scope => '.highlight') %>
     </style>
-    <%= stylesheet_link_tag :main, media: :screen %>
+    <%= stylesheet_link_tag :screen, media: :screen %>
     <%= stylesheet_link_tag :print, media: :print %>
     <% if current_page.data.search %>
       <%= javascript_include_tag  "all" %>
@@ -46,7 +46,7 @@ under the License.
     <% end %>
   </head>
 
-  <body class="<%= page_classes %>">
+  <body class="<%= page_classes %>" data-languages="<%=h language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -55,6 +55,17 @@ under the License.
     </a>
     <div class="toc-wrapper">
       <a href="/"><%= image_tag "logo.svg", class: 'logo' %></a>
+      <% if language_tabs.any? %>
+        <div class="lang-selector">
+          <% language_tabs.each do |lang| %>
+            <% if lang.is_a? Hash %>
+              <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
+            <% else %>
+              <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
       <hr class="separator">
       <div id="toc" class="toc-list-h1">
         <% toc_data(page_content).each do |h1| %>
@@ -81,8 +92,22 @@ under the License.
       <% end %>
     </div>
     <div class="page-wrapper">
+      <div class="dark-box"></div>
       <div class="content">
         <%= page_content %>
+      </div>
+      <div class="dark-box">
+        <% if language_tabs.any? %>
+          <div class="lang-selector">
+            <% language_tabs.each do |lang| %>
+              <% if lang.is_a? Hash %>
+                <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
+              <% else %>
+                <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
   </body>
