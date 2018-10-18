@@ -19,11 +19,17 @@ set :js_dir, 'javascripts'
 set :images_dir, 'images'
 set :fonts_dir, 'fonts'
 
+
+page '/api.html', layout: :api
+activate :directory_indexes
+
+
 # Activate the syntax highlighter
 activate :syntax
 ready do
   require './lib/multilang.rb'
 end
+
 
 activate :sprockets
 

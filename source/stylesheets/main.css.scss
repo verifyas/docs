@@ -63,16 +63,6 @@ html, body {
   font-size: 12px;
   font-weight: bold;
 
-  // language selector for mobile devices
-  .lang-selector {
-    display: none;
-    // a {
-    //   padding-top: 0.5em;
-    //   padding-bottom: 0.5em;
-    // }
-  }
-
-  // This is the logo at the top of the ToC
   .logo {
     height: 25px;
     width: 140px;
@@ -284,75 +274,6 @@ html, body {
   min-height: 100%;
 
   padding-bottom: 1px; // prevent margin overflow
-
-  // The dark box is what gives the code samples their dark background.
-  // It sits essentially under the actual content block, which has a
-  // transparent background.
-  // I know, it's hackish, but it's the simplist way to make the left
-  // half of the content always this background color.
-  .dark-box {
-    width: $examples-width;
-    background-color: $examples-bg;
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-  }
-
-  .lang-selector {
-    position: fixed;
-    padding: 13px 30px;
-    border-bottom: 1px solid #18363A;
-    z-index: 50;
-  }
-}
-
-.lang-selector {
-  background-color: $lang-select-bg;
-  width: 100%;
-  font-weight: bold;
-  a {
-    display: block;
-    float:left;
-    padding: 0 11px;
-    color: $lang-select-text;
-    font-size: 14px;
-    font-weight: 300;
-    text-decoration: none;
-    line-height: 30px;
-    letter-spacing: 0.93px;
-    border: 1px solid #506B6B;
-    border-radius: 2px;
-    outline: 0;
-
-    &:not(:last-child) {
-      margin-right: 10px;
-    }
-
-    // &:hover {
-    //   // padding: 0 10px;
-    // }
-
-    // &:active, &:focus {
-    //   background-color: $lang-select-pressed-bg;
-    //   color: $lang-select-pressed-text;
-    // }
-
-    &.active {
-      padding: 1px 10px;
-      background-image: $lang-select-active-bg;
-      font-weight: 700;
-      border: none;
-      // background-image: linear-gradient(-45deg, #3CC661 0%, #44C897 100%);
-
-    }
-  }
-
-  &:after {
-    content: '';
-    clear: both;
-    display: block;
-  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -364,8 +285,8 @@ html, body {
   // fixes webkit rendering bug for some: see #538
   -webkit-transform: translateZ(0);
   // to place content above the dark box
-  position: relative;
-  z-index: 30;
+  // position: relative;
+  //z-index: 30;
 
   &:after {
     content: '';
@@ -374,7 +295,7 @@ html, body {
   }
 
   &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
-    margin-right: $examples-width;
+    // margin-right: $examples-width;
     padding: 0 $main-padding;
     box-sizing: border-box;
     display: block;
@@ -394,13 +315,13 @@ html, body {
   h1 {
     @extend %header-font;
     padding-top: 15px;
-    padding-bottom: 14px;
+    // padding-bottom: 14px;
     margin-top: 0;
-    margin-bottom: 30px;
+    // margin-bottom: 30px;
     font-size: 20px;
     line-height: 1.5;
-    border-top: 1px solid #DDEAE7;
-    border-bottom: 1px solid #DDEAE7;
+    // border-top: 1px solid #DDEAE7;
+    // border-bottom: 1px solid #DDEAE7;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -408,13 +329,13 @@ html, body {
     margin-top: 0;
   }
 
+
   h2 {
     @extend %header-font;
     font-size: 19px;
     margin-top: 0;
     margin-bottom: 0;
-    padding-top: 1.2em;
-    padding-bottom: 1.2em;
+    padding-top: 2.4em;
   }
 
   h1, h2 {
@@ -427,6 +348,8 @@ html, body {
   h1 + h2, h1 + div + h2 {
     // margin-top: $h1-margin-bottom * -1;
     border-top: none;
+    padding-top: 1.2em;
+
   }
 
   h3, h4, h5, h6 {
@@ -516,7 +439,7 @@ html, body {
   }
 
   code {
-    padding: 3px 7px;
+    // padding: 3px 3px;
     font-size: 12px; /* looks better on a smaller font-size */
     color: #4BC16B;
     border-radius: 3px;
@@ -548,9 +471,10 @@ html, body {
 
     &.warning {
       background-color: $aside-warning-bg;
+      color: #fff;
 
       a {
-        color: darken($aside-warning-bg, 50%);
+        color: lighten($aside-warning-bg, 20%);
       }
     }
 
@@ -601,14 +525,13 @@ html, body {
     color: #fff;
 
     margin: 0;
-    width: $examples-width;
 
-    float:right;
-    clear:right;
+    // float:right;
+    // clear:right;
 
     box-sizing: border-box;
 
-    @extend %right-col;
+    // @extend %right-col;
 
     &>p { margin: 0; }
 
@@ -697,14 +620,14 @@ html, body {
     display: none;
   }
 
-  %right-col {
-    width: auto;
-    float: none;
-  }
+  // %right-col {
+  //   width: auto;
+  //   float: none;
+  // }
 
-  %right-col + %left-col {
-    margin-top: $main-padding;
-  }
+  // %right-col + %left-col {
+  //   margin-top: $main-padding;
+  // }
 }
 
 .how_required {
