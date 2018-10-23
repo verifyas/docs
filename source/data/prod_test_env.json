@@ -1,0 +1,27 @@
+{
+  "id": "d3cdd181-7b6f-470e-b423-866dac5f96f8",
+  "name": "Production Test Account",
+  "values": [
+    {
+      "key": "SECRET_API_KEY",
+      "value": "sk_test_74cYpoGpktPuCzcpzhCVliae2njw3tiW",
+      "description": "",
+      "enabled": true
+    },
+    {
+      "key": "PUBLIC_API_KEY",
+      "value": "pk_test_xqd8L2gVEV3stThuOXuzMC4DFs9a2dcq",
+      "description": "",
+      "enabled": true
+    },
+    {
+      "key": "API_URL",
+      "value": "https://api.verifypayments.com",
+      "description": "",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2018-10-23T14:22:03.793Z",
+  "_postman_exported_using": "Postman/6.3.0"
+}
