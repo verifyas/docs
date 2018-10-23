@@ -318,7 +318,7 @@ html, body {
     // padding-bottom: 14px;
     margin-top: 0;
     // margin-bottom: 30px;
-    font-size: 20px;
+    font-size: 22px;
     line-height: 1.5;
     // border-top: 1px solid #DDEAE7;
     // border-bottom: 1px solid #DDEAE7;
@@ -335,7 +335,7 @@ html, body {
     font-size: 19px;
     margin-top: 0;
     margin-bottom: 0;
-    padding-top: 2.4em;
+    padding-top: 1.2em;
   }
 
   h1, h2 {
@@ -349,7 +349,6 @@ html, body {
     // margin-top: $h1-margin-bottom * -1;
     border-top: none;
     padding-top: 1.2em;
-
   }
 
   h3, h4, h5, h6 {
@@ -548,6 +547,7 @@ html, body {
     padding-bottom: 2em;
     padding: 2em $main-padding;
     background: #032327;
+    margin-bottom: 2em;
   }
 
   blockquote {

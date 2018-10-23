@@ -1,4 +1,13 @@
+---
+title: Verify Payments Documentation
+toc_footers:
+  - <a href='/api'>API Reference</a>
+  - <a href='https://demo.verifypayments.com' target="_blank">Demo <sup><i class="fas fa-external-link-alt"></i></sup></a>
+---
+
 # Getting Started
+
+## Overview
 
 Processing bank transfer with Verify Payments is a two-step process, involving
 both server-side and client-side steps:
@@ -11,9 +20,9 @@ both server-side and client-side steps:
 
 Here is how it looks:
 
-<div id="scheme">
+<p id="scheme">
   <img src="/images/how-it-works.png" />
-</div>
+</p>
 
 ## 1. Create a Session
 
@@ -89,6 +98,9 @@ the `onComplete` callback is called with a `Transfer` object parameter.
    successful.
 </aside>
 
+
+If you need any help integrating Verify Payments, [let us know](/#support).
+
 # Javascript SDK
 
 ## Configuration options
@@ -102,6 +114,69 @@ Parameter | Description
 `onComplete` | The callback that is triggered after a Transfer is completed (includes `transfer` parameter)
 `onClose` | The callback triggered when the payment popup is closed
 
+# API Keys
+
+You can authenticate requests to the Verify Payments API by including an API key
+in the request that you send. Each Test and Live accounts have separate pair of API
+keys: **secret** and **public**.
+
+<aside class=notice>
+<strong>Heads up</strong> &mdash; Never use your <strong>secret key</strong> in any public environments including client-side web apps or mobile applications. It should only be used in direct server-to-server calls.
+</aside>
+
+The secret keys used to authenticate with the API — keep these private! Make
+sure not to commit them to your source code repositories or share them. The
+public keys used on the client side with our [Javascript SDK] in web or mobile
+application where they can be easily seen by other developers.
+
+We tried to make it easy to distinguish test API Keys from live ones and secret
+from private. Here is how. Each API key has a prefix **sk** or **pk** which
+means *secret key* or *public key*. Also, API key contains the word **live** or
+**test**.  If your API key looks like this: `pk_test_aPx0PtQprQ...` it's a public test
+API key. If it looks like this `sk_live_dQODRGgH...` it's a secret key of live account.
+
+[Contact us](#support) to get your API keys for test or live account.
+
+# Testing
+
+Thoroughly test your integration before going live using test information provided below.
+
+## Test Account
+
+Inside VerifyPayments you have a **Test Account** which lets you test your
+integration. Test Account works with a **Test Bank**. So, all transactions are
+imitated and you can perform testing without being worred about real money.
+
+### Test API Keys
+
+When you perform API requests or use Javascript SDK you have to use API Keys
+of a test account.
+
+### Currencies and Balance
+
+Test Bank supports *AED*, *BHD* and *USD* currencies. Inside Test Bank you have three accounts:
+
+* AED account with 10.00 AED balance
+* BHD account with 1.000 BHD balance
+* USD account with 10.00 USD balance
+
+
+## Test Credentials
+
+The following usernames can be used during login to produce specific results,
+useful for testing different scenarios:
+
+Username | Result
+--------- | -----------
+`failure` | Login fails
+`test` | Login succeeds and transfer succeeds as well
+`test_otp` | Request for OTP during login, transfer succeeds
+`test_questions` | Request for secret questions during login, transfer succeeds
+`test_transfer_failure` | Login succeeds but transfer fails
+`test_transfer_otp` | Request for otp before transfer, transfer succeeds
+`test_transfer_questions` | Request for otp before transfer, transfer succeeds
+
 # Support
 
-If you need any help integrating Verify Payments, let us know at [team@verify.as](mailto:team@verify.as)
+We would be glad to help you with any questions. Just let us know if you need
+any help at [team@verify.as](team@verify.as).
