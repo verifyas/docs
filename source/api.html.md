@@ -14,6 +14,14 @@ Welcome to the Verify Payments API 👋! The reference documentation below descr
 This API is currently in beta. We may push breaking changes to the API endpoints on short notice. Make sure to <a href="https://groups.google.com/a/lists.verify.as/forum/#!forum/api-announcements" target="_blank" data-link="_">join our mailing list</a> to get notified of such changes ahead of time.
 </aside>
 
+All endpoints described below can be run in Postman with our collection of
+requests.  We also have a configured Postman environment for the provided
+collection. You can [download it here](/data/prod_test_env.json) and then
+import it into the Postman app.
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/2b49751207889eb47603)
+
+
 # Authentication
 
 > To authorize, use this code:
