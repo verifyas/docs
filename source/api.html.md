@@ -17,7 +17,7 @@ This API is currently in beta. We may push breaking changes to the API endpoints
 All endpoints described below can be run in Postman with our collection of
 requests.  We also have a configured Postman environment for the provided
 collection. You can [download it here](/data/prod_test_env.json) and then
-import it in the Postman app.
+import it into the Postman app.
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/2b49751207889eb47603)
 
