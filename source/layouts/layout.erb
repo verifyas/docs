@@ -29,16 +29,22 @@ under the License.
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title><%= current_page.data.title || "API Documentation" %></title>
+    <title><%= current_page.data.title || "Verify Payments Documentation" %></title>
     <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
     <link rel="icon" type="image/png" href="../images/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="../images/favicon-16x16.png" sizes="16x16" />
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <style>
       <%= Rouge::Themes::MonokaiSublime.render(:scope => '.highlight') %>
     </style>
     <%= stylesheet_link_tag :main, media: :screen %>
     <%= stylesheet_link_tag :print, media: :print %>
+    <script>
+        const DocsConfig = {
+            autoFold: true
+        };
+    </script>
     <% if current_page.data.search %>
       <%= javascript_include_tag  "all" %>
     <% else %>
@@ -71,9 +77,6 @@ under the License.
             <% end %>
           </li>
         <% end %>
-       <li>
-           <a href="/api/" class="toc-h1 toc-link">API Reference</a>
-       </li>
       </ul>
       <% if current_page.data.toc_footers %>
         <ul class="toc-footer">

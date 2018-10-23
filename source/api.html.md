@@ -1,8 +1,8 @@
 ---
 title: API Reference
-
-language_tabs: # must be one of https://git.io/vQNgJ
-
+toc_footers:
+  - <a href='/'>Documentation</a>
+  - <a href='https://demo.verifypayments.com' target="_blank">Demo <sup><i class="fas fa-external-link-alt"></i></sup></a>
 search: true
 ---
 
