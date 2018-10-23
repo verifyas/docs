@@ -117,23 +117,25 @@ Parameter | Description
 # API Keys
 
 You can authenticate requests to the Verify Payments API by including an API key
-in the request that you send. Each Test and Live accounts have separate pair of API
+in the request that you send. Every account (whether Test or Live) has a pair of API
 keys: **secret** and **public**.
 
 <aside class=notice>
-<strong>Heads up</strong> &mdash; Never use your <strong>secret key</strong> in any public environments including client-side web apps or mobile applications. It should only be used in direct server-to-server calls.
+<strong>Heads up</strong> &mdash; Never use your <strong>secret key</strong> in any 
+  public environments including client-side web apps or mobile applications. It should 
+  only be used in direct server-to-server calls.
 </aside>
 
-The secret keys used to authenticate with the API — keep these private! Make
+The secret keys are used to authenticate with the API — keep these private! Make
 sure not to commit them to your source code repositories or share them. The
 public keys used on the client side with our [Javascript SDK] in web or mobile
 application where they can be easily seen by other developers.
 
 We tried to make it easy to distinguish test API Keys from live ones and secret
 from private. Here is how. Each API key has a prefix **sk** or **pk** which
-means *secret key* or *public key*. Also, API key contains the word **live** or
+means *secret key* or *public key*. Also, each API key contains the word **live** or
 **test**.  If your API key looks like this: `pk_test_aPx0PtQprQ...` it's a public test
-API key. If it looks like this `sk_live_dQODRGgH...` it's a secret key of live account.
+API key. If it looks like this `sk_live_dQODRGgH...` it's a secret key of a live account.
 
 [Contact us](#support) to get your API keys for test or live account.
 
