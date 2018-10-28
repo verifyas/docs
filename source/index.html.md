@@ -38,6 +38,7 @@ In order to create a session you have to make an API request including the `amou
 Here is an example in NodeJS:
 
 ```js
+// server.js
 require('request');
 var request = require('request-promise');
 
@@ -52,7 +53,7 @@ request.post({
     description: 'Order #123 at Acme Inc'
   }
 }).then(function(session) {
-  /* Session successfully created */
+  /* Session created; send this to the client */
   console.log('Session ID: ' + session.id);
 }).catch(function(err) {
   console.log('Error: ' + err.response.body.message);
@@ -68,22 +69,30 @@ call the `open()` method on this object in response to any event (e.g. a button
 click):
 
 ```html
-<button id='btn-pay'>Pay</button>
+<!-- index.html -->
+<html>
+<head>
+  <script src="https://js.verifypayments.com/sdk.js"></script>
+  <script>
+  const payment = new VerifyPayments({
+    /* configuration parameters: */
+    sessionId: 'SESSION_ID_SHOULD_BE_RENDERED_HERE',
+    publicKey: '%test_public_key%',
+    onComplete: function(transfer) { console.log('Transfer completed', transfer); },
+    onClose: function() { console.log('Transfer window closed'); }
+  });
 
-<script src="https://js.verifypayments.com/sdk.js"></script>
-<script>
-const payment = new VerifyPayments({
-   /* configuration parameters: */
-   sessionId: 'SESSION_ID_SHOULD_BE_RENDERED_HERE',
-   publicKey: '%test_public_key%',
-   onComplete: function(transfer) { console.log('Transfer completed', transfer); },
-   onClose: function() { console.log('Transfer window closed'); }
-});
+  /* Add button click handler */
+  const button = document.getElementById('btn-pay');
+  button.addEventListener('click', payment.show);
+  </script>
+</head>
+<body>
+  <!-- our Pay button -->
+  <button id='btn-pay'>Pay</button>
 
-/* Add button click handler */
-const button = document.getElementById('btn-pay');
-button.addEventListener('click', payment.show);
-</script>
+</body>
+</html>
 ```
 
 ## 3. Process Transfer
