@@ -123,6 +123,20 @@ Parameter | Description
 `onComplete` | The callback that is triggered after a Transfer is completed (includes `transfer` parameter)
 `onClose` | The callback triggered when the payment popup is closed
 
+# iOS SDK
+
+iSO SDK is a developer friendly wrapper that uses WebView to open and manage
+our Javascript SDK.
+
+You can find installation, configuration and usage instructions in the [iOS SDK](https://github.com/verifyas/ios-sdk) GitHub repository.
+
+# Android SDK
+
+Android SDK is a developer friendly wrapper that uses WebView to open and manage
+our Javascript SDK.
+
+You can find installation, configuration and usage instructions in the [Android SDK](https://github.com/verifyas/android-sdk) GitHub repository.
+
 # API Keys
 
 You can authenticate requests to the Verify Payments API by including an API key
