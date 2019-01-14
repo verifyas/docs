@@ -119,14 +119,14 @@ Parameter | Description
 iSO SDK is a developer friendly wrapper that uses WebView to open and manage
 our Javascript SDK.
 
-You can find installation, configuration and usage instructions in [iOS SDK](https://github.com/verifyas/ios-sdk) GitHub repository.
+You can find installation, configuration and usage instructions in the [iOS SDK](https://github.com/verifyas/ios-sdk) GitHub repository.
 
 # Android SDK
 
 Android SDK is a developer friendly wrapper that uses WebView to open and manage
 our Javascript SDK.
 
-You can find installation, configuration and usage instructions in [Android SDK](https://github.com/verifyas/android-sdk) GitHub repository.
+You can find installation, configuration and usage instructions in the [Android SDK](https://github.com/verifyas/android-sdk) GitHub repository.
 
 # API Keys
 
