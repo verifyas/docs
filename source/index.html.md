@@ -71,7 +71,11 @@ click):
 ```html
 <!-- index.html -->
 <html>
-<head>
+<body>
+  <!-- our Pay button -->
+  <button id='btn-pay'>Pay</button>
+
+  <!-- script at bottom of <body> -->
   <script src="https://js.verifypayments.com/sdk.js"></script>
   <script>
   const payment = new VerifyPayments({
@@ -86,11 +90,6 @@ click):
   const button = document.getElementById('btn-pay');
   button.addEventListener('click', payment.show);
   </script>
-</head>
-<body>
-  <!-- our Pay button -->
-  <button id='btn-pay'>Pay</button>
-
 </body>
 </html>
 ```
