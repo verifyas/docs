@@ -65,7 +65,7 @@ request.post({
 Now that the session is created, the client can use the Verify Javascript SDK 
 to begin a transfer. On page load, create a `VerifyPayments` object, passing 
 the appropriate [configuration parameters](#configuration-options). You may 
-call the `open()` method on this object in response to any event (e.g. a button
+call the `show()` method on this object in response to any event (e.g. a button
 click):
 
 ```html
