@@ -10,7 +10,7 @@ toc_footers:
 
 ## Overview
 
-Processing bank transfer with Verify Payments is a two-step process, involving
+Oh the high level, processing bank transfer with Verify Payments is a three-step process, involving
 both server-side and client-side steps:
 
 1. (Server) Create a session using your Private API key including the `amount`, 
