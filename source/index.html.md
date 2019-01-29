@@ -5,6 +5,7 @@ toc_footers:
   - <a href='https://demo.verifypayments.com' target="_blank">Demo <sup><i class="fas fa-external-link-alt"></i></sup></a>
 ---
 
+
 # Getting Started
 
 ## Overview
@@ -106,6 +107,220 @@ the `onComplete` callback is called with a `Transfer` object parameter.
    successful.
 </aside>
 
+If you need any help integrating Verify Payments, [let us know](/#support).
+
+# Integration Guide
+
+## Introduction
+
+The following guide uses pseudo mobile wallet as an example appliction. It describes
+all steps and interactions between user, application, backend and Verify API when
+user top-up his wallet.
+
+For the application we will use html and JavaScript to simplify code and make it
+obvious. If you work with iOS or Android all front-end code that works with
+JS-SDK can be replaced with corresponding mobile SDK code.
+
+Full source code of the demo application can be found in [our Github
+repository](https://github.com/verifyas/integration-guide-demo). Front-end part
+is located at `./public` directory. Back-end part starts from `./index.js` in
+the root directory.
+
+You can test our demo here: [https://wallet-demo-app.herokuapp.com/](https://wallet-demo-app.herokuapp.com/)
+
+<aside class=warning>
+For the simplicity reasons we skip validation and error handling in many
+places of the demo application. You should carefully handle all such cases in your production application.
+</aside>
+
+## User Initiates Top-up
+
+This section describes the 1st step of the transfer process:
+
+
+<p id="scheme">
+  <img src="/images/guide/step-1.png" />
+</p>
+
+Everything starts from an application screen where user sets amount he willing to
+transfer to his wallet:
+
+<p class="guide-img">
+  <img src="/images/guide/wallet-screen.png" />
+</p>
+ 
+When user clicks 'Top up via Bank Transfer' button we create transfer session
+and after session is created we start transfer. Let's create a handler for the button:
+
+```js
+var btn = document.getElementById('btnTopUp');
+
+btn.addEventListener('click', function() { 
+  createSession({ onSuccess: startTransfer });
+  btn.disabled = true;
+  btn.innerText = 'Please, wait...'
+});
+```
+
+Session creation involves two parties: your back-end and API of Verify Payments.
+`createSession` method of your application will pass all required data for
+session to your back-end. Let's look at it:
+
+```js
+function createSession({ onSuccess }) {
+  var amount = document.getElementById('amount').value;
+  var data = { amount: amount, currency: 'BHD' };
+
+  // call to your backend
+  fetch(`${YOUR_DOMAIN}/sessions`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  })
+  .then(response => response.json())
+  .then(json => {
+    onSuccess(json.sessionId);
+  });
+}
+}
+```
+
+It's time to switch to your back-end's `sessions` endpoint. On the backend we
+will receive params from the application and make a call to Verify Payment's
+API. What's really important here is to link created session with current user.
+We need this in order to verify later that a transfer belongs to the user. The
+following code creates session at Verify Payments for received amount and
+currency and links it with current user:
+
+```js
+app.post("/sessions", async (req, res, next) => {
+  // you should load your current user from DB
+  currentUser = new User();
+
+  const amountInUnits = convertAmountToUnits(req.body.amount, req.body.currency)
+  
+  try {
+    const session = await verifySDK.createSession({
+      amountInUnits,
+      currency: req.body.currency,
+      description: 'Wallet topup'
+    })
+    currentUser.storeTransferSession(session);
+    res.json({ sessionId: session.id });
+  } catch (e) {
+    next(e);
+  }
+})
+````
+
+`verifySDK` is a simple HTTP client for Verify Payments API. You can find the source code of this client [here](https://github.com/verifyas/integration-guide-demo/blob/master/lib/sdk.js).
+
+As result of this code our application receives `sessionId`.
+
+## Application Starts Transfer
+
+This section describes the 2nd step of the transfer process:
+
+<p id="scheme">
+  <img src="/images/guide/step-2.png" />
+</p>
+
+Having `sessionId` (it was received from back-end) application calls Verify
+JavaScript SDK or mobile SDK to perform transfer:
+
+```js
+function startTransfer(sessionId) {
+  const payment = new VerifyPayments({
+    sessionId: sessionId,
+    publicKey: 'pk_test_iHpU1X3UlhcdH2OWWajvfE30bTWbeQ1D',
+    onComplete: function(result) {
+      if (result.object === 'transfer') {
+        finalizeTopUp(result.id);
+      } else if (result.object === 'error') {
+        document.getElementById('failureMessage').innerText = result.message;
+        hide(transferScreen);
+        show(failureScreen);
+      }
+    },
+    onClose: function() {
+    }
+  });
+
+  payment.show();
+}
+```
+
+This method shows Verify Payment's screen where user can make necessary steps to complete transfer:
+
+<p class="guide-img">
+  <img src="/images/guide/verify-js-sdk-screen.png" />
+</p>
+
+When transfer is completed SDK calls `onComplete` method and pass ID of
+completed transfer. In our case it's `finalizeTopUp`.
+
+## Finalize Top-up
+
+This section describes the 3rd step of the transfer process:
+
+<p id="scheme">
+  <img src="/images/guide/step-3.png" />
+</p>
+
+At the final step we have to update our back-end and show corresponding screen
+to the user.
+
+When transfer completes JavaScript SDK returns ID of transfer to the application. Using this ID
+we call back-end endpoint that will finalize top-up. After we receive response from the server
+we show success or failure screen to user. Here is the code from our application:
+
+```js
+function finalizeTopUp(transferId) {
+  fetch(`${YOUR_DOMAIN}/finalize-transfer/${transferId}`, {
+    method: 'POST'
+  })
+    .then(response => response.json())
+    .then(json => {
+      if (json.status == 'success') {
+        updateBalance(json.balance);
+        hide(transferScreen);
+        show(successScreen);
+      } else {
+        hide(transferScreen);
+        show(failureScreen);
+      }
+    });
+}
+```
+
+At the back-end we receive ID of completed transfer and pull full transfer
+information from Verify Payment's API. Then we check that this transfer is really
+belongs to current user and that this transfer is successful. After we perform this
+checks we can update current user balance with transfer amount. Look at the code of the endpoint:
+
+```js
+app.post("/finalize-transfer/:transferId", async (req, res, next) => {
+  try {
+    const transfer = await verifySDK.getTransfer(req.params.transferId);
+    
+    if (transfer && currentUser.isTransferSuccessful(transfer)) {
+        currentUser.updateBalance(transfer);
+        res.json({ status: 'success', balance: currentUser.balance });
+    } else {
+        res.json({ status: 'failure' });
+    }
+  } catch (e) {
+    next(e);
+  }
+})
+```
+
+As a final action our application, depending on received result (success or
+failure) shows corresponding screen:
+
+<p class="guide-img">
+  <img src="/images/guide/success-screen.png" />
+</p>
 
 If you need any help integrating Verify Payments, [let us know](/#support).
 
