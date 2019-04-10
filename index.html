@@ -5,11 +5,12 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Verify Payments Documentation</title>
     <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
     <link rel="icon" type="image/png" href="../images/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="../images/favicon-16x16.png" sizes="16x16" />
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <style>
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
@@ -199,12 +200,17 @@
   color: #f92672;
 }
     </style>
-    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/main.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all.js"></script>
+    <script>
+        const DocsConfig = {
+            autoFold: true
+        };
+    </script>
+      <script src="javascripts/all_nosearch.js"></script>
   </head>
 
-  <body class="index" data-languages="[]">
+  <body class="index">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -214,282 +220,359 @@
     <div class="toc-wrapper">
       <a href="/"><img src="images/logo.svg" class="logo" alt="Logo" /></a>
       <hr class="separator">
-      <div id="toc" class="toc-list-h1">
+      <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
-          </li>
-          <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#bank-accounts" class="toc-h1 toc-link" data-title="Bank accounts">Bank Accounts</a>
+            <a href="#getting-started" class="toc-h1 toc-link" data-title="Getting started">Getting Started</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#the-bank-account-object" class="toc-h2 toc-link" data-title="The bank account object">The bank account object</a>
+                    <a href="#overview" class="toc-h2 toc-link" data-title="Overview">Overview</a>
                   </li>
                   <li>
-                    <a href="#create-a-bank-account" class="toc-h2 toc-link" data-title="Create a bank account">Create a bank account</a>
+                    <a href="#1-create-a-session" class="toc-h2 toc-link" data-title="1. create a session">1. Create a Session</a>
                   </li>
                   <li>
-                    <a href="#retrieve-a-bank-account" class="toc-h2 toc-link" data-title="Retrieve a bank account">Retrieve a bank account</a>
+                    <a href="#2-initiate-transfer" class="toc-h2 toc-link" data-title="2. initiate transfer">2. Initiate Transfer</a>
+                  </li>
+                  <li>
+                    <a href="#3-process-transfer" class="toc-h2 toc-link" data-title="3. process transfer">3. Process Transfer</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#transfers" class="toc-h1 toc-link" data-title="Transfers">Transfers</a>
+            <a href="#integration-guide" class="toc-h1 toc-link" data-title="Integration guide">Integration Guide</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#the-transfer-object" class="toc-h2 toc-link" data-title="The transfer object">The transfer object</a>
+                    <a href="#introduction" class="toc-h2 toc-link" data-title="Introduction">Introduction</a>
                   </li>
                   <li>
-                    <a href="#create-a-transfer" class="toc-h2 toc-link" data-title="Create a transfer">Create a transfer</a>
+                    <a href="#user-initiates-top-up" class="toc-h2 toc-link" data-title="User initiates top-up">User Initiates Top-up</a>
                   </li>
                   <li>
-                    <a href="#get-all-transfers" class="toc-h2 toc-link" data-title="Get all transfers">Get all transfers</a>
+                    <a href="#application-starts-transfer" class="toc-h2 toc-link" data-title="Application starts transfer">Application Starts Transfer</a>
                   </li>
                   <li>
-                    <a href="#retrieve-a-specific-transfer" class="toc-h2 toc-link" data-title="Retrieve a specific transfer">Retrieve a specific transfer</a>
+                    <a href="#finalize-top-up" class="toc-h2 toc-link" data-title="Finalize top-up">Finalize Top-up</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#verifications" class="toc-h1 toc-link" data-title="Verifications">Verifications</a>
+            <a href="#javascript-sdk" class="toc-h1 toc-link" data-title="Javascript sdk">Javascript SDK</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#the-verification-object" class="toc-h2 toc-link" data-title="The verification object">The verification object</a>
-                  </li>
-                  <li>
-                    <a href="#submit-a-verification" class="toc-h2 toc-link" data-title="Submit a verification">Submit a verification</a>
+                    <a href="#configuration-options" class="toc-h2 toc-link" data-title="Configuration options">Configuration options</a>
                   </li>
               </ul>
           </li>
-      </div>
+          <li>
+            <a href="#ios-sdk" class="toc-h1 toc-link" data-title="Ios sdk">iOS SDK</a>
+          </li>
+          <li>
+            <a href="#android-sdk" class="toc-h1 toc-link" data-title="Android sdk">Android SDK</a>
+          </li>
+          <li>
+            <a href="#api-keys" class="toc-h1 toc-link" data-title="Api keys">API Keys</a>
+          </li>
+          <li>
+            <a href="#testing" class="toc-h1 toc-link" data-title="Testing">Testing</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#test-account" class="toc-h2 toc-link" data-title="Test account">Test Account</a>
+                  </li>
+                  <li>
+                    <a href="#test-credentials" class="toc-h2 toc-link" data-title="Test credentials">Test Credentials</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#support" class="toc-h1 toc-link" data-title="Support">Support</a>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href='/api'>API Reference</a></li>
+            <li><a href='https://demo.verifypayments.com' target="_blank">Demo <sup><i class="fas fa-external-link-alt"></i></sup></a></li>
+        </ul>
     </div>
     <div class="page-wrapper">
-      <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Verify Payments API 👋! The reference documentation below describes the various functions that you can use to initiate, track and manage fiat transfer using the Verify Payments API.</p>
+        <h1 id='getting-started'>Getting Started</h1><h2 id='overview'>Overview</h2>
+<p>Oh the high level, processing bank transfer with Verify Payments is a three-step process, involving
+both server-side and client-side steps:</p>
 
-<aside class="notice">
-This API is currently in alpha. We may push breaking changes to the API endpoints on short notice. Make sure to <a href="https://groups.google.com/a/lists.verify.as/forum/#!forum/api-announcements" target="_blank" data-link="_">join our mailing list</a> to get notified of such changes ahead of time.
-</aside>
-<h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"https://api.verifypayments.com/"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: Bearer %test_secret_key%"</span>
-</code></pre>
-<blockquote>
-<p>The code above actually works. You can paste it directly in your terminal to try it out!</p>
-</blockquote>
+<ol>
+<li>(Server) Create a session using your Private API key including the <code>amount</code>, 
+<code>currency</code> and <code>description</code>.</li>
+<li>(Client) Initiate a Transfer from your website using the session created 
+earlier with your Public API key.</li>
+<li>(Client) Customer completes the Transfer.</li>
+</ol>
 
-<p>You can authenticate requests to the Verify Payments API by including your secret key in the request that you send. We currently use <a href="https://tools.ietf.org/html/rfc6750">Bearer authentication</a> without the underlying OAuth 2.0 protocol.</p>
+<p>Here is how it looks:</p>
+
+<p id="scheme">
+  <img src="images/how-it-works.png" />
+</p>
+<h2 id='1-create-a-session'>1. Create a Session</h2>
+<p>In order to create a session you have to make an API request including the <code>amount</code>,
+<code>currency</code> and <code>description</code> to the following endpoint:</p>
+
+<p><code>POST %api_endpoint%/sessions/</code></p>
 
 <aside class=notice>
-<strong>Heads up</strong> &mdash; We plan to add SSL/TLS certificate-based authentication in the near future.
+   Authentication and request parameters are described in <a href="/api/#create-a-session">API Reference</a>.
 </aside>
 
-<p>The token access keys used to authenticate with the API are generated through the Dashboard &mdash; keep these private! Make sure not to commit them to your source code repositories or share them.</p>
+<p>Here is an example in NodeJS:</p>
+<pre class="highlight javascript"><code><span class="c1">// server.js</span>
+<span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request-promise'</span><span class="p">);</span>
 
-<p>Include the API key for all requests to the server in a header that looks like the following: <code>Authorization: Bearer &quot;%test_secret_key%&quot;</code></p>
+<span class="nx">request</span><span class="p">.</span><span class="nx">post</span><span class="p">({</span>
+  <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.verifypayments.com/sessions/'</span><span class="p">,</span>
+  <span class="s1">'auth'</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">'bearer'</span><span class="p">:</span> <span class="s1">'%test_secret_key%'</span> <span class="cm">/* secret key */</span>
+  <span class="p">},</span>
+  <span class="na">json</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">currency</span><span class="p">:</span> <span class="s1">'AED'</span><span class="p">,</span>
+    <span class="na">amount</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="na">description</span><span class="p">:</span> <span class="s1">'Order #123 at Acme Inc'</span>
+  <span class="p">}</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">session</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/* Session created; send this to the client */</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Session ID: '</span> <span class="o">+</span> <span class="nx">session</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Error: '</span> <span class="o">+</span> <span class="nx">err</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre><h2 id='2-initiate-transfer'>2. Initiate Transfer</h2>
+<p>Now that the session is created, the client can use the Verify Javascript SDK 
+to begin a transfer. On page load, create a <code>VerifyPayments</code> object, passing 
+the appropriate <a href="#configuration-options">configuration parameters</a>. You may 
+call the <code>show()</code> method on this object in response to any event (e.g. a button
+click):</p>
+<pre class="highlight html tab-html"><code><span class="c">&lt;!-- index.html --&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+  <span class="c">&lt;!-- our Pay button --&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">'btn-pay'</span><span class="nt">&gt;</span>Pay<span class="nt">&lt;/button&gt;</span>
 
-<p>All API calls must be made using <a href="http://en.wikipedia.org/wiki/HTTP_Secure">HTTPS</a>. Calls made over unsecured HTTP connections will fail.</p>
-<h1 id='bank-accounts'>Bank Accounts</h1>
-<p>A Bank Account object is created when a user logs in with their online banking credentials. Verify retrieves the various account details and creates Bank Account objects for each supported account. These objects can then be used to initiate <a href="#transfers">Transfers</a>.</p>
-<h2 id='the-bank-account-object'>The bank account object</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ba_81047f09b378e5fe896372868579fb06"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bank_account"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Abdullah Mohamed Alahmed"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"is_individual"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"account_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"67890123456"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AE070331234567890123456"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AED"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"last_accessed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-01T13:12:22-08:00"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='parameters'>Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>The unique ID of this specific bank account</td>
-</tr>
-<tr>
-<td>object</td>
-<td>The type of the object (always <code>bank_account</code> for Bank Accounts)</td>
-</tr>
-<tr>
-<td>name</td>
-<td>The name of the person or business that owns the bank account</td>
-</tr>
-<tr>
-<td>is_individual</td>
-<td>Indicates if the owner of the bank account is an individual or a corporate entity</td>
-</tr>
-<tr>
-<td>account_number</td>
-<td>The bank-specific account number for this bank account</td>
-</tr>
-<tr>
-<td>iban</td>
-<td>The unique, internationally-recognized bank account ID for this account</td>
-</tr>
-<tr>
-<td>currency</td>
-<td>The 3-letter <a href="https://en.wikipedia.org/wiki/ISO_4217#Active_codes">ISO4217 currency code</a> for the bank account</td>
-</tr>
-</tbody></table>
-<h2 id='create-a-bank-account'>Create a bank account</h2>
-<p>When you create a bank account, you must specify the bank account holder (<code>Sender</code> or <code>Receiver</code>). The bank account will then be associated exclusively with that account holder.</p>
-<pre class="highlight shell tab-shell"><code>curl https://api.verifypayments.com/bank_accounts <span class="se">\</span>
-  -H <span class="s2">"Authorization: Bearer %test_secret_key%"</span> <span class="se">\</span>
-  -d <span class="s2">"sender={SENDER_ID}"</span> <span class="se">\</span>
-  -d <span class="s2">"name=Abdullah Mohamed Alahmed"</span> <span class="se">\</span>
-  -d <span class="s2">"iban=AE070331234567890123456"</span> <span class="se">\</span>
-  -d <span class="s2">"currency=AED"</span>
-</code></pre><h3 id='http-request'>HTTP Request</h3>
-<p><code>POST https://api.verifypayments.com/bank_accounts</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>sender<div class=how_required>Optional</div></td>
-<td>The Sender ID that this bank account is associated with. Required when account is associated with a sender.</td>
-</tr>
-<tr>
-<td>receiver<div class=how_required>Optional</div></td>
-<td>The Receiver ID that this bank account is associated with. Required when account is associated with a receiver.</td>
-</tr>
-<tr>
-<td>name</td>
-<td>The name of the person or business that owns the bank account</td>
-</tr>
-<tr>
-<td>iban</td>
-<td>The unique, internationally-recognized bank account ID for this account</td>
-</tr>
-<tr>
-<td>currency</td>
-<td>The 3-letter <a href="https://en.wikipedia.org/wiki/ISO_4217#Active_codes">ISO4217 currency code</a> for the bank account</td>
-</tr>
-</tbody></table>
-<h2 id='retrieve-a-bank-account'>Retrieve a bank account</h2><pre class="highlight shell tab-shell"><code>curl https://api.verifypayments.com/bank_accounts/&lt;ID&gt; <span class="se">\</span>
-  -H <span class="s2">"Authorization: Bearer %test_secret_key%"</span>
-</code></pre><h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET https://api.verifypayments.com/bank_accounts/&lt;ID&gt;</code></p>
-<h3 id='query-parameters-2'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id<div class=how_required>Required</div></td>
-<td>The bank account you&#39;d like to retrieve the details for</td>
-</tr>
-</tbody></table>
-<h1 id='transfers'>Transfers</h1>
-<p>A Transfer object is created when you initiate a transfer from a <code>source</code> bank account to a <code>destination</code> bank account. Most transfers require <a href="#verifications">Verifications</a> to complete.</p>
-<h2 id='the-transfer-object'>The transfer object</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tr_a52e8452378ed0f77540a5084fc3b702"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transfer"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AED"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10000"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"source_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ba_8676aa794678cc51c9f1538893518e6d"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"destination_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ba_b7739d06fbf4d4aa2460c69686eb1d56"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-01T13:12:22-08:00"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='parameters-2'>Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>The unique ID of this specific bank transfer</td>
-</tr>
-<tr>
-<td>object</td>
-<td>The type of the object (always <code>transfer</code> for Transfers)</td>
-</tr>
-<tr>
-<td>currency</td>
-<td>The 3-letter <a href="https://en.wikipedia.org/wiki/ISO_4217#Active_codes">ISO4217 currency code</a> for the transfer</td>
-</tr>
-<tr>
-<td>amount</td>
-<td>The transfer amount, in fils (e.g. 1000 = AED10.00)</td>
-</tr>
-<tr>
-<td>status</td>
-<td>The status of the transfer. Can be either <code>pending</code>, <code>failed</code> or <code>success</code></td>
-</tr>
-<tr>
-<td>source_id</td>
-<td>The source <a href="#the-bank-account-object">Bank Account</a> from which funds will be withdrawn. This must belong to a <code>sender</code></td>
-</tr>
-<tr>
-<td>destination_id</td>
-<td>The destination <a href="#the-bank-account-object">Bank Account</a> to which funds will be deposited. This must belong to a <code>receiver</code></td>
-</tr>
-</tbody></table>
-<h2 id='create-a-transfer'>Create a transfer</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.verifypayments.com/transfers/"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: Bearer %test_secret_key%"</span> <span class="se">\</span>
-  -d <span class="s2">"currency=AED"</span> <span class="se">\</span>
-  -d <span class="s2">"amount=10000"</span> <span class="se">\</span>
-  -d <span class="s2">"source_id=ba_8676aa794678cc51c9f1538893518e6d"</span> <span class="se">\</span>
-  -d <span class="s2">"destination_id=ba_b7739d06fbf4d4aa2460c69686eb1d56"</span>
-</code></pre><h3 id='http-request-3'>HTTP Request</h3>
-<p><code>POST https://api.verifypayments.com/transfers/</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>currency</td>
-<td>The 3-letter <a href="https://en.wikipedia.org/wiki/ISO_4217#Active_codes">ISO4217 currency code</a> for the transfer</td>
-</tr>
-<tr>
-<td>amount</td>
-<td>The transfer amount, in fils (e.g. 1000 = AED10.00)</td>
-</tr>
-<tr>
-<td>source_id</td>
-<td>The source <a href="#the-bank-account-object">Bank Account</a> from which funds will be withdrawn. This must belong to the presently authenticated <code>sender</code> (i.e. whose API key is used to submit the request)</td>
-</tr>
-<tr>
-<td>destination_id</td>
-<td>The destination <a href="#the-bank-account-object">Bank Account</a> to which funds will be deposited. This must belong to a <code>receiver</code></td>
-</tr>
-</tbody></table>
-<h2 id='get-all-transfers'>Get all transfers</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.verifypayments.com/transfers"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: Bearer %test_secret_key%"</span>
+  <span class="c">&lt;!-- script at bottom of &lt;body&gt; --&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://js.verifypayments.com/sdk.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script&gt;</span>
+  <span class="kr">const</span> <span class="nx">payment</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">VerifyPayments</span><span class="p">({</span>
+    <span class="cm">/* configuration parameters: */</span>
+    <span class="na">sessionId</span><span class="p">:</span> <span class="s1">'SESSION_ID_SHOULD_BE_RENDERED_HERE'</span><span class="p">,</span>
+    <span class="na">publicKey</span><span class="p">:</span> <span class="s1">'%test_public_key%'</span><span class="p">,</span>
+    <span class="na">onComplete</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">transfer</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Transfer completed'</span><span class="p">,</span> <span class="nx">transfer</span><span class="p">);</span> <span class="p">},</span>
+    <span class="na">onClose</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Transfer window closed'</span><span class="p">);</span> <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="cm">/* Add button click handler */</span>
+  <span class="kr">const</span> <span class="nx">button</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'btn-pay'</span><span class="p">);</span>
+  <span class="nx">button</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="nx">payment</span><span class="p">.</span><span class="nx">show</span><span class="p">);</span>
+  <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre><h2 id='3-process-transfer'>3. Process Transfer</h2>
+<p>When your customer clicks the &#39;Pay&#39; button, a popup is loaded inside an iframe
+that allows the user to complete the Transfer. When the transfer is processed,
+the <code>onComplete</code> callback is called with a <code>Transfer</code> object parameter.</p>
+
+<aside class=warning>
+   Make sure to validate the Transfer <a href="/api/#retrieve-a-transfer">on your server</a>. 
+   Only `Transfer` objects with status <strong>`succeeded`</strong> should be considered 
+   successful.
+</aside>
+
+<p>If you need any help integrating Verify Payments, <a href="/#support">let us know</a>.</p>
+<h1 id='integration-guide'>Integration Guide</h1><h2 id='introduction'>Introduction</h2>
+<p>The following guide uses pseudo mobile wallet as an example appliction. It describes
+all steps and interactions between user, application, backend and Verify API when
+user top-up his wallet.</p>
+
+<p>For the application we will use html and JavaScript to simplify code and make it
+obvious. If you work with iOS or Android all front-end code that works with
+JS-SDK can be replaced with corresponding mobile SDK code.</p>
+
+<p>Full source code of the demo application can be found in <a href="https://github.com/verifyas/integration-guide-demo">our Github
+repository</a>. Front-end part
+is located at <code>./public</code> directory. Back-end part starts from <code>./index.js</code> in
+the root directory.</p>
+
+<p>You can test our demo here: <a href="https://wallet-demo-app.herokuapp.com/">https://wallet-demo-app.herokuapp.com/</a></p>
+
+<aside class=warning>
+For the simplicity reasons we skip validation and error handling in many
+places of the demo application. You should carefully handle all such cases in your production application.
+</aside>
+<h2 id='user-initiates-top-up'>User Initiates Top-up</h2>
+<p>This section describes the 1st step of the transfer process:</p>
+
+<p id="scheme">
+  <img src="images/guide/step-1.png" />
+</p>
+
+<p>Everything starts from an application screen where user sets amount he willing to
+transfer to his wallet:</p>
+
+<p class="guide-img">
+  <img src="images/guide/wallet-screen.png" />
+</p>
+ 
+
+<p>When user clicks &#39;Top up via Bank Transfer&#39; button we create transfer session
+and after session is created we start transfer. Let&#39;s create a handler for the button:</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">btn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'btnTopUp'</span><span class="p">);</span>
+
+<span class="nx">btn</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+  <span class="nx">createSession</span><span class="p">({</span> <span class="na">onSuccess</span><span class="p">:</span> <span class="nx">startTransfer</span> <span class="p">});</span>
+  <span class="nx">btn</span><span class="p">.</span><span class="nx">disabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="nx">btn</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="s1">'Please, wait...'</span>
+<span class="p">});</span>
 </code></pre>
-<p>This endpoint retrieves all transfers, sorted in reverse-chronological order (i.e. from newest to oldest).</p>
-<h3 id='http-request-4'>HTTP Request</h3>
-<p><code>GET https://api.verifypayments.com/transfers</code></p>
-<h2 id='retrieve-a-specific-transfer'>Retrieve a specific transfer</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.verifypayments.com/transfers/&lt;ID&gt;"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: Bearer %test_secret_key%"</span>
-</code></pre><h3 id='http-request-5'>HTTP Request</h3>
-<p><code>GET https://api.verifypayments.com/transfers/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+<p>Session creation involves two parties: your back-end and API of Verify Payments.
+<code>createSession</code> method of your application will pass all required data for
+session to your back-end. Let&#39;s look at it:</p>
+<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">createSession</span><span class="p">({</span> <span class="nx">onSuccess</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">amount</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'amount'</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span> <span class="na">amount</span><span class="p">:</span> <span class="nx">amount</span><span class="p">,</span> <span class="na">currency</span><span class="p">:</span> <span class="s1">'BHD'</span> <span class="p">};</span>
+
+  <span class="c1">// call to your backend</span>
+  <span class="nx">fetch</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">YOUR_DOMAIN</span><span class="p">}</span><span class="s2">/sessions`</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">method</span><span class="p">:</span> <span class="s2">"POST"</span><span class="p">,</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="s2">"Content-Type"</span><span class="p">:</span> <span class="s2">"application/json"</span> <span class="p">},</span>
+    <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">json</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">onSuccess</span><span class="p">(</span><span class="nx">json</span><span class="p">.</span><span class="nx">sessionId</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>It&#39;s time to switch to your back-end&#39;s <code>sessions</code> endpoint. On the backend we
+will receive params from the application and make a call to Verify Payment&#39;s
+API. What&#39;s really important here is to link created session with current user.
+We need this in order to verify later that a transfer belongs to the user. The
+following code creates session at Verify Payments for received amount and
+currency and links it with current user:</p>
+<pre class="highlight javascript"><code><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">"/sessions"</span><span class="p">,</span> <span class="nx">async</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// you should load your current user from DB</span>
+  <span class="nx">currentUser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">();</span>
+
+  <span class="kr">const</span> <span class="nx">amountInUnits</span> <span class="o">=</span> <span class="nx">convertAmountToUnits</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">amount</span><span class="p">,</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">currency</span><span class="p">)</span>
+
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">session</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">verifySDK</span><span class="p">.</span><span class="nx">createSession</span><span class="p">({</span>
+      <span class="nx">amountInUnits</span><span class="p">,</span>
+      <span class="na">currency</span><span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">currency</span><span class="p">,</span>
+      <span class="na">description</span><span class="p">:</span> <span class="s1">'Wallet topup'</span>
+    <span class="p">})</span>
+    <span class="nx">currentUser</span><span class="p">.</span><span class="nx">storeTransferSession</span><span class="p">(</span><span class="nx">session</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span> <span class="na">sessionId</span><span class="p">:</span> <span class="nx">session</span><span class="p">.</span><span class="nx">id</span> <span class="p">});</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">next</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+</code></pre>
+<p><code>verifySDK</code> is a simple HTTP client for Verify Payments API. You can find the source code of this client <a href="https://github.com/verifyas/integration-guide-demo/blob/master/lib/sdk.js">here</a>.</p>
+
+<p>As result of this code our application receives <code>sessionId</code>.</p>
+<h2 id='application-starts-transfer'>Application Starts Transfer</h2>
+<p>This section describes the 2nd step of the transfer process:</p>
+
+<p id="scheme">
+  <img src="images/guide/step-2.png" />
+</p>
+
+<p>Having <code>sessionId</code> (it was received from back-end) application calls Verify
+JavaScript SDK or mobile SDK to perform transfer:</p>
+<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">startTransfer</span><span class="p">(</span><span class="nx">sessionId</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">payment</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">VerifyPayments</span><span class="p">({</span>
+    <span class="na">sessionId</span><span class="p">:</span> <span class="nx">sessionId</span><span class="p">,</span>
+    <span class="na">publicKey</span><span class="p">:</span> <span class="s1">'pk_test_iHpU1X3UlhcdH2OWWajvfE30bTWbeQ1D'</span><span class="p">,</span>
+    <span class="na">onComplete</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">object</span> <span class="o">===</span> <span class="s1">'transfer'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">finalizeTopUp</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">object</span> <span class="o">===</span> <span class="s1">'error'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'failureMessage'</span><span class="p">).</span><span class="nx">innerText</span> <span class="o">=</span> <span class="nx">result</span><span class="p">.</span><span class="nx">message</span><span class="p">;</span>
+        <span class="nx">hide</span><span class="p">(</span><span class="nx">transferScreen</span><span class="p">);</span>
+        <span class="nx">show</span><span class="p">(</span><span class="nx">failureScreen</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="na">onClose</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="nx">payment</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre>
+<p>This method shows Verify Payment&#39;s screen where user can make necessary steps to complete transfer:</p>
+
+<p class="guide-img">
+  <img src="images/guide/verify-js-sdk-screen.png" />
+</p>
+
+<p>When transfer is completed SDK calls <code>onComplete</code> method and pass ID of
+completed transfer. In our case it&#39;s <code>finalizeTopUp</code>.</p>
+<h2 id='finalize-top-up'>Finalize Top-up</h2>
+<p>This section describes the 3rd step of the transfer process:</p>
+
+<p id="scheme">
+  <img src="images/guide/step-3.png" />
+</p>
+
+<p>At the final step we have to update our back-end and show corresponding screen
+to the user.</p>
+
+<p>When transfer completes JavaScript SDK returns ID of transfer to the application. Using this ID
+we call back-end endpoint that will finalize top-up. After we receive response from the server
+we show success or failure screen to user. Here is the code from our application:</p>
+<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">finalizeTopUp</span><span class="p">(</span><span class="nx">transferId</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">fetch</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">YOUR_DOMAIN</span><span class="p">}</span><span class="s2">/finalize-transfer/</span><span class="p">${</span><span class="nx">transferId</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span>
+  <span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">json</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">json</span><span class="p">.</span><span class="nx">status</span> <span class="o">==</span> <span class="s1">'success'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">updateBalance</span><span class="p">(</span><span class="nx">json</span><span class="p">.</span><span class="nx">balance</span><span class="p">);</span>
+        <span class="nx">hide</span><span class="p">(</span><span class="nx">transferScreen</span><span class="p">);</span>
+        <span class="nx">show</span><span class="p">(</span><span class="nx">successScreen</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">hide</span><span class="p">(</span><span class="nx">transferScreen</span><span class="p">);</span>
+        <span class="nx">show</span><span class="p">(</span><span class="nx">failureScreen</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+</code></pre>
+<p>At the back-end we receive ID of completed transfer and pull full transfer
+information from Verify Payment&#39;s API. Then we check that this transfer is really
+belongs to current user and that this transfer is successful. After we perform this
+checks we can update current user balance with transfer amount. Look at the code of the endpoint:</p>
+<pre class="highlight javascript"><code><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">"/finalize-transfer/:transferId"</span><span class="p">,</span> <span class="nx">async</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">transfer</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">verifySDK</span><span class="p">.</span><span class="nx">getTransfer</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">transferId</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">transfer</span> <span class="o">&amp;&amp;</span> <span class="nx">currentUser</span><span class="p">.</span><span class="nx">isTransferSuccessful</span><span class="p">(</span><span class="nx">transfer</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nx">currentUser</span><span class="p">.</span><span class="nx">updateBalance</span><span class="p">(</span><span class="nx">transfer</span><span class="p">);</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span> <span class="na">status</span><span class="p">:</span> <span class="s1">'success'</span><span class="p">,</span> <span class="na">balance</span><span class="p">:</span> <span class="nx">currentUser</span><span class="p">.</span><span class="nx">balance</span> <span class="p">});</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span> <span class="na">status</span><span class="p">:</span> <span class="s1">'failure'</span> <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">next</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+</code></pre>
+<p>As a final action our application, depending on received result (success or
+failure) shows corresponding screen:</p>
+
+<p class="guide-img">
+  <img src="images/guide/success-screen.png" />
+</p>
+
+<p>If you need any help integrating Verify Payments, <a href="/#support">let us know</a>.</p>
+<h1 id='javascript-sdk'>Javascript SDK</h1><h2 id='configuration-options'>Configuration options</h2>
+<p>The following options should be passed to <code>VerifyPayments</code> class:</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -497,95 +580,115 @@ curl <span class="s2">"https://api.verifypayments.com/"</span> <span class="se">
 </tr>
 </thead><tbody>
 <tr>
-<td>id<div class=how_required>Required</div></td>
-<td>The ID of the transfer we&#39;d like to retrieve</td>
+<td><code>sessionId</code></td>
+<td>The ID of the session created by your server-side script</td>
+</tr>
+<tr>
+<td><code>publicKey</code></td>
+<td>Your public API key</td>
+</tr>
+<tr>
+<td><code>onComplete</code></td>
+<td>The callback that is triggered after a Transfer is completed (includes <code>transfer</code> parameter)</td>
+</tr>
+<tr>
+<td><code>onClose</code></td>
+<td>The callback triggered when the payment popup is closed</td>
 </tr>
 </tbody></table>
-<h1 id='verifications'>Verifications</h1>
-<p>A Verification object is created whenever additional verification is required in order for a transfer to be completed.</p>
+<h1 id='ios-sdk'>iOS SDK</h1>
+<p>iSO SDK is a developer friendly wrapper that uses WebView to open and manage
+our Javascript SDK.</p>
 
-<p>There are various methods for verification:</p>
+<p>You can find installation, configuration and usage instructions in the <a href="https://github.com/verifyas/ios-sdk">iOS SDK</a> GitHub repository.</p>
+<h1 id='android-sdk'>Android SDK</h1>
+<p>Android SDK is a developer friendly wrapper that uses WebView to open and manage
+our Javascript SDK.</p>
+
+<p>You can find installation, configuration and usage instructions in the <a href="https://github.com/verifyas/android-sdk">Android SDK</a> GitHub repository.</p>
+<h1 id='api-keys'>API Keys</h1>
+<p>You can authenticate requests to the Verify Payments API by including an API key
+in the request that you send. Every account (whether Test or Live) has a pair of API
+keys: <strong>secret</strong> and <strong>public</strong>.</p>
+
+<aside class=notice>
+<strong>Heads up</strong> &mdash; Never use your <strong>secret key</strong> in any 
+  public environments including client-side web apps or mobile applications. It should 
+  only be used in direct server-to-server calls.
+</aside>
+
+<p>The secret keys are used to authenticate with the API — keep these private! Make
+sure not to commit them to your source code repositories or share them. The
+public keys used on the client side with our [Javascript SDK] in web or mobile
+application where they can be easily seen by other developers.</p>
+
+<p>We tried to make it easy to distinguish test API Keys from live ones and secret
+from private. Here is how. Each API key has a prefix <strong>sk</strong> or <strong>pk</strong> which
+means <em>secret key</em> or <em>public key</em>. Also, each API key contains the word <strong>live</strong> or
+<strong>test</strong>.  If your API key looks like this: <code>pk_test_aPx0PtQprQ...</code> it&#39;s a public test
+API key. If it looks like this <code>sk_live_dQODRGgH...</code> it&#39;s a secret key of a live account.</p>
+
+<p><a href="#support">Contact us</a> to get your API keys for test or live account.</p>
+<h1 id='testing'>Testing</h1>
+<p>Thoroughly test your integration before going live using test information provided below.</p>
+<h2 id='test-account'>Test Account</h2>
+<p>Inside VerifyPayments you have a <strong>Test Account</strong> which lets you test your
+integration. Test Account works with a <strong>Test Bank</strong>. So, all transactions are
+imitated and you can perform testing without being worred about real money.</p>
+<h3 id='test-api-keys'>Test API Keys</h3>
+<p>When you perform API requests or use Javascript SDK you have to use API Keys
+of a test account.</p>
+<h3 id='currencies-and-balance'>Currencies and Balance</h3>
+<p>Test Bank supports <em>AED</em>, <em>BHD</em> and <em>USD</em> currencies. Inside Test Bank you have three accounts:</p>
 
 <ul>
-<li>SMS Verification (<code>sms</code>)</li>
-<li>Two Factor Authentication, or 2FA (<code>two_factor_auth</code>)</li>
-<li>Secret Question (<code>secret_question</code>)</li>
+<li>AED account with 10.00 AED balance</li>
+<li>BHD account with 1.000 BHD balance</li>
+<li>USD account with 10.00 USD balance</li>
 </ul>
+<h2 id='test-credentials'>Test Credentials</h2>
+<p>The following usernames can be used during login to produce specific results,
+useful for testing different scenarios:</p>
 
-<p>The specific verification method required will depend on the bank account that a transfer is initiated from.</p>
-<h2 id='the-verification-object'>The verification object</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vrf_dd2e878a149ab1d6b3df3a3cb1f060a4"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"verification"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sms"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"challenge_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Enter the SMS code sent to your mobile number ending in 789"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"challenge_response"</span><span class="p">:</span><span class="w"> </span><span class="s2">"124990"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"passed"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"transfer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tr_a52e8452378ed0f77540a5084fc3b702"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"expires_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-01T13:12:22-08:00"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='parameters-3'>Parameters</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
+<th>Username</th>
+<th>Result</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>id</td>
-<td>The unique ID of this verification</td>
+<td><code>failure</code></td>
+<td>Login fails</td>
 </tr>
 <tr>
-<td>object</td>
-<td>The type of the object (always <code>verification</code> for Verifications)</td>
+<td><code>test</code></td>
+<td>Login succeeds and transfer succeeds as well</td>
 </tr>
 <tr>
-<td>method</td>
-<td>The method of verification required (either <code>sms</code>, <code>two_factor_auth</code> or <code>secret_question</code>)</td>
+<td><code>test_otp</code></td>
+<td>Request for OTP during login, transfer succeeds</td>
 </tr>
 <tr>
-<td>challenge_text</td>
-<td>A human-friendly text that can be displayed to users in your custom UI</td>
+<td><code>test_questions</code></td>
+<td>Request for secret questions during login, transfer succeeds</td>
 </tr>
 <tr>
-<td>challenge_response</td>
-<td>The response that was submitted for this verification attempt</td>
+<td><code>test_transfer_failure</code></td>
+<td>Login succeeds but transfer fails</td>
 </tr>
 <tr>
-<td>status</td>
-<td>The status of the verification. Can be either <code>pending</code>, <code>failed</code> or <code>success</code></td>
+<td><code>test_transfer_otp</code></td>
+<td>Request for otp before transfer, transfer succeeds</td>
 </tr>
 <tr>
-<td>transfer_id</td>
-<td>The <a href="#the-transfer-object">Transfer</a> to which this verification belongs</td>
+<td><code>test_transfer_questions</code></td>
+<td>Request for otp before transfer, transfer succeeds</td>
 </tr>
 </tbody></table>
-<h2 id='submit-a-verification'>Submit a verification</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.verifypayments.com/verifications/&lt;ID&gt;"</span> <span class="se">\</span>
-  -X PUT <span class="se">\</span>
-  -H <span class="s2">"Authorization: Bearer %test_secret_key%"</span> <span class="se">\</span>
-  -d <span class="s2">"challenge_response=123456"</span>
-</code></pre>
-<p>Submit the <code>challenge_response</code> for a verification. This request is idempotent, and you can safely submit the request multiple times.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
-<p><code>PUT https://api.verifypayments.com/verifications/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-3'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id<div class=how_required>Required</div></td>
-<td>The ID of the verification that we&#39;re submitting the <code>challenge_response</code> for</td>
-</tr>
-<tr>
-<td>challenge_response<div class=how_required>Required</div></td>
-<td>The response provided by the customer to the verification challenge</td>
-</tr>
-</tbody></table>
+<h1 id='support'>Support</h1>
+<p>We would be glad to help you with any questions. Just let us know if you need
+any help at <a href="team@verify.as">team@verify.as</a>.</p>
 
-      </div>
-      <div class="dark-box">
       </div>
     </div>
   </body>
