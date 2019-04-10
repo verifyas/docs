@@ -1,8 +1,7 @@
 ---
 title: Verify Payments Documentation
 toc_footers:
-  - <a href='/api'>API Reference</a>
-  - <a href='https://demo.verifypayments.com' target="_blank">Demo <sup><i class="fas fa-external-link-alt"></i></sup></a>
+  - <a href='/api' target='_blank'>API Reference</a> <span style='border-radius:5px;background:linear-gradient(to bottom, #4bc16b, #3ab05a);color:#fff;padding:2px 7px;font-size:.8rem'>NEW</span>
 ---
 
 
